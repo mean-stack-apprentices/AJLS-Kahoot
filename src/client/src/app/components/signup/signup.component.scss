@@ -49,6 +49,10 @@
   background: rgba(31, 224, 192, 0.829);
 }
 
+.form button:disabled {
+    background: #d48383;
+}
+
 .form .message {
   margin: 15px 0 0;
   color: #b3b3b3;
