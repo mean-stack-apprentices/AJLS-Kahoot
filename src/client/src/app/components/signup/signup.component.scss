@@ -50,9 +50,10 @@
 }
 
 .form button:disabled {
-    background: #d48383;
-}
-
+    background: rgb(171, 206, 230);
+    cursor: default;
+  }
+  
 .form .message {
   margin: 15px 0 0;
   color: #b3b3b3;
