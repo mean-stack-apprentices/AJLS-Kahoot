@@ -3,5 +3,5 @@ export interface User {
     _id?:{type: mongoose.Types.ObjectId}
     username: string,
     password?: string,
-    age?: number,
+    age: number,
 }
