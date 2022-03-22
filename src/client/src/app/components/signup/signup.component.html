@@ -1,0 +1,26 @@
+<div class="app">
+  <div class="signup-page">
+    <div class="form">
+      <form [formGroup]="addUser">
+        <input type="text" placeholder="UserName" formControlName="username" />
+        <input type="number" placeholder="Age" formControlName="age" />
+        <input
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+
+        <button
+          type="submit"
+          class="submit-button"
+          [disabled]="addUser.invalid"
+        >
+          Sign Up
+        </button>
+        <p class="message">
+          Already registered? <a routerLink="/login">SignIn</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
