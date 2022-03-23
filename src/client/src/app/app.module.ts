@@ -10,8 +10,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { SignupComponent } from './components/signup/signup.component';
+import { UserEffects } from './store/effects/user/user.effects';
+import * as fromUser from './store/reducers/user/user.reducer';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+
 
 
 @NgModule({
@@ -29,6 +32,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ReactiveFormsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    EffectsModule.forRoot([UserEffects]),
+    StoreModule.forFeature(fromUser.userFeatureKey, fromUser.reducer),
   ],
   providers: [],
   bootstrap: [AppComponent]
