@@ -1,0 +1,12 @@
+<div class="main-div">
+    <div class="sub-main-div">
+        <div class="form-div">
+            <form [formGroup]="loginForm">
+                <input type="text" placeholder="Enter Username" formControlName="username" />
+                <input type="text" placeholder="Enter Password" formControlName="password" />
+                <button type="submit" class="submit-button" [disabled]="loginForm.invalid"> Log In </button>
+                <p class="message"> Need an Account? <a routerLink="/signup">Sign Up</a></p>
+            </form>
+        </div>
+    </div>
+</div>
