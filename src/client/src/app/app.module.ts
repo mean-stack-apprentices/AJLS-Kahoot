@@ -10,12 +10,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
