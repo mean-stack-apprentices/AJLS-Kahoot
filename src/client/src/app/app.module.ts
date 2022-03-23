@@ -12,12 +12,17 @@ import { EffectsModule } from '@ngrx/effects';
 import { SignupComponent } from './components/signup/signup.component';
 import { UserEffects } from './store/effects/user/user.effects';
 import * as fromUser from './store/reducers/user/user.reducer';
+import { HomeComponent } from './components/home/home.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
+    HomeComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
