@@ -1,10 +1,10 @@
 <div class="main-div">
     <div class="sub-main-div">
         <div class="form-div">
-            <form>
-                <input type="number" placeholder="Enter Game Pin" formControlName="gamepin" />
+            <form [formGroup]="loginForm">
                 <input type="text" placeholder="Enter Username" formControlName="username" />
-                <button type="submit" class="submit-button"> Join Game </button>
+                <input type="text" placeholder="Enter Password" formControlName="password" />
+                <button type="submit" class="submit-button" [disabled]="loginForm.invalid"> Log In </button>
                 <p class="message"> Need an Account? <a routerLink="/signup">Sign Up</a></p>
             </form>
         </div>
