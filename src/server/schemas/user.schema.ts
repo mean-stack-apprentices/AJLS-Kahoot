@@ -8,4 +8,11 @@ const userSchema = new Schema<User>({
     age: {type: Number, required: true},
 });
 
-export const UserModel = model<User>('User',userSchema)
+export const UserModel = model<User>('User',userSchema);
+
+userSchema.path('username').validate(async function (username: string) {
+    const usernameCount = await mongoose.models.User?.countDocuments({ username })
+    return !usernameCount
+},'Username already exists!');
+
+
