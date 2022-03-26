@@ -28,22 +28,20 @@ userRouter.post("/create-user", function (req, res) {
     .findOne({ username })
     .then(user => {
       if(!user) {
-        res.json("Invalid username");
+        res.status(401).send("Invalid username");
         return;
       }
       else {
         if(user?.password == password) {
-          res.json({ data: user });
+          res.json(user);
         }
         else {
-          res.json("Invalid password");
+          res.status(401).send("Invalid password");
         }
       }
     })
     .catch((err) => {
-      res.status(501);
-      res.json({ errors: err });
+      res.status(501).json({ errors: err });
     });
    });
-
   
