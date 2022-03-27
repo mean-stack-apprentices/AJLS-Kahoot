@@ -1,16 +1,18 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { User } from '../../../../../../shared/models/user.model';
-import { createUserSuccess } from '../../actions/user/user.actions';
+import { createUserFailure, createUserSuccess } from '../../actions/user/user.actions';
 
 
 export const userFeatureKey = 'user';
 
 export interface State {
   users: User[];
+  signUpFailure: String | null;
 }
 
 export const initialState: State = {
-users: [],
+  users: [],
+  signUpFailure: null
 };
 
 
@@ -21,7 +23,9 @@ export const reducer = createReducer(
     const users = [...state.users];
     users.push(action.data);
     return {...state, users}
-  })
-
+  }),
+  on(createUserFailure,(state, action) => {
+    return {...state, signUpFailure: action.error.message}
+  } )
 );
 
