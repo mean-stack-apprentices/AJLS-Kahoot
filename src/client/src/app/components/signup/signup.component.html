@@ -2,6 +2,9 @@
   <div class="sub-main-div">
     <div class="form-div">
       <h2>Create Kahoot Account</h2>
+      <label *ngIf = "signUpSuccess && (!addUserForm.dirty)">
+        <p class="success-fail-msg success-msg">{{signUpSuccess}}</p>
+      </label>
       <label *ngIf = "signUpFailure && (!addUserForm.dirty)">
         <p class="success-fail-msg failure-msg">{{signUpFailure}}</p>
       </label>
