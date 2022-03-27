@@ -1,6 +1,10 @@
 <div class="main-div">
   <div class="sub-main-div">
     <div class="form-div">
+      <h2>Create Kahoot Account</h2>
+      <label *ngIf = "signUpFailure && (!addUserForm.dirty)">
+        <p class="success-fail-msg failure-msg">{{signUpFailure}}</p>
+      </label>
       <form [formGroup]="addUserForm">
         <input type="text" placeholder="UserName" formControlName="username" />
         <input type="number" placeholder="Age" formControlName="age" />
