@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store';
 import { createUser } from 'src/app/store/actions/user/user.actions';
-import { signUpFailureSelector } from 'src/app/store/selectors/user/user.selectors';
+import { signUpFailureSelector, signUpSuccessSelector } from 'src/app/store/selectors/user/user.selectors';
 
 @Component({
   selector: 'app-signup',
@@ -13,6 +13,7 @@ import { signUpFailureSelector } from 'src/app/store/selectors/user/user.selecto
 export class SignupComponent implements OnInit {
   addUserForm: FormGroup;
   signUpFailure: String | null = null;
+  signUpSuccess: String | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -26,6 +27,8 @@ export class SignupComponent implements OnInit {
     });
 
     this.store.select(signUpFailureSelector).subscribe(data => this.signUpFailure = data);
+
+    this.store.select(signUpSuccessSelector).subscribe(data => this.signUpSuccess = data);
   }
 
   ngOnInit(): void {}
