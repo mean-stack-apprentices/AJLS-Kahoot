@@ -8,11 +8,13 @@ export const userFeatureKey = 'user';
 export interface State {
   users: User[];
   signUpFailure: String | null;
+  signUpSuccess: String | null;
 }
 
 export const initialState: State = {
   users: [],
-  signUpFailure: null
+  signUpFailure: null,
+  signUpSuccess: null
 };
 
 
@@ -22,7 +24,7 @@ export const reducer = createReducer(
   on(createUserSuccess, (state, action) => {
     const users = [...state.users];
     users.push(action.data);
-    return {...state, users}
+    return {...state, users, signUpSuccess: "Account created successfully"}
   }),
   on(createUserFailure,(state, action) => {
     return {...state, signUpFailure: action.error.message}
