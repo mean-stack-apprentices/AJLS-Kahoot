@@ -7,4 +7,9 @@ const userFeatureSelector = createFeatureSelector<AppState, fromUser.State>(from
 export const signUpFailureSelector = createSelector(
     userFeatureSelector,
     (state) => state.signUpFailure
+);
+
+export const signUpSuccessSelector = createSelector(
+    userFeatureSelector,
+    (state) => state.signUpSuccess
 )
