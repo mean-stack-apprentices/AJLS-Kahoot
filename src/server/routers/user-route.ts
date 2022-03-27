@@ -21,7 +21,7 @@ userRouter.post("/create-user", function (req, res) {
       })
       .catch((err) => {
         res.status(501);
-        res.json({ errors: err });
+        res.json(err);
       });
   });
 
