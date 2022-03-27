@@ -4,20 +4,11 @@
       <form [formGroup]="addUserForm">
         <input type="text" placeholder="UserName" formControlName="username" />
         <input type="number" placeholder="Age" formControlName="age" />
-        <input
-          type="password"
-          placeholder="Password"
-          formControlName="password"
-        />
+        <input type="password" placeholder="Password" formControlName="password"/>
 
-        <button
-          type="submit"
-          class="submit-button"
-          [disabled]="addUserForm.invalid"
-          (click)="signUpUser()"
-        >
-          Sign Up
-        </button>
+        <button type="submit" class="submit-button" [disabled]="addUserForm.invalid"
+          (click)="signUpUser()"> Sign Up</button>
+
         <p class="message">
           Already registered? <a routerLink="/login">Sign In</a>
         </p>
