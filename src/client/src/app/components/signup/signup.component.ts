@@ -10,13 +10,14 @@ import { createUser } from 'src/app/store/actions/user/user.actions';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  addUser: FormGroup;
+  addUserForm: FormGroup;
 
-  constructor(private fb: FormBuilder,private store:Store<AppState>)
-
+  constructor(
+    private fb: FormBuilder,
+    private store:Store<AppState>
+  )
   {
-
-    this.addUser = this.fb.group({
+    this.addUserForm = this.fb.group({
       username: ['', Validators.required],
       age: [ '',Validators.compose([Validators.required, Validators.minLength(3)]),],
       password: ['', Validators.compose([Validators.required, Validators.minLength(5)]),],
@@ -25,9 +26,8 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {}
 
-
   signUpUser(){
-    this.store.dispatch(createUser({data:this.addUser.value}))
-    this.addUser.reset();
+    this.store.dispatch(createUser({data:this.addUserForm.value}))
+    this.addUserForm.reset();
   }
 }

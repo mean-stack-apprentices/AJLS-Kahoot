@@ -1,7 +1,7 @@
 <div class="main-div">
   <div class="sub-main-div">
     <div class="form-div">
-      <form [formGroup]="addUser">
+      <form [formGroup]="addUserForm">
         <input type="text" placeholder="UserName" formControlName="username" />
         <input type="number" placeholder="Age" formControlName="age" />
         <input
@@ -13,13 +13,13 @@
         <button
           type="submit"
           class="submit-button"
-          [disabled]="addUser.invalid"
+          [disabled]="addUserForm.invalid"
           (click)="signUpUser()"
         >
           Sign Up
         </button>
         <p class="message">
-          Already registered? <a routerLink="/login">SignIn</a>
+          Already registered? <a routerLink="/login">Sign In</a>
         </p>
       </form>
     </div>
