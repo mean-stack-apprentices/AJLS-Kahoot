@@ -17,7 +17,7 @@ userRouter.post("/create-user", function (req, res) {
     bcrypt.hash(password, salt, function (err, hash) {
       const user = new UserModel({
         username,
-        password,
+        password: hash,
         age,
       });
 
