@@ -23,7 +23,7 @@ userRouter.post("/create-user", function (req, res) {
       user
         .save()
         .then((data) => {
-          res.json({ data });
+          res.json({ message: "Account created Successfully", data });
         })
         .catch((err) => {
           res.status(501);
