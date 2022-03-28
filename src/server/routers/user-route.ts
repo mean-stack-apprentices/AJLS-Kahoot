@@ -43,7 +43,8 @@ userRouter.get("/login", function (req, res) {
       res.status(401).send("Invalid username");
       return;
     } else {
-      if (user?.password == password) {
+      bcrypt.compare(password, `${user?.password}`, function (err, result) {
+        if (result) { 
         const accessToken = jwt.sign({ user }, access_secret);
         console.log("Token", accessToken);
         res.cookie("jwt", accessToken, {
@@ -54,8 +55,10 @@ userRouter.get("/login", function (req, res) {
         } else {
           res.status(401).send("Invalid password");
         }
-      }
-    })
+      })
+    }
+  })
+    
     .catch((err) => {
       res.status(501).json(err);
     });
