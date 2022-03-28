@@ -65,5 +65,21 @@
     color: rgb(0, 153, 255);
     text-decoration: none;
   }
+
+.success-fail-msg {
+    margin: 0 0 15px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.success-msg {
+    color: green;
+    background-color: rgb(210, 248, 209);
+}
+
+.failure-msg {
+    color: red;
+    background-color: rgb(247, 208, 208);
+}
   
   

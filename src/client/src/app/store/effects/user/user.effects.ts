@@ -12,14 +12,17 @@ export class UserEffects {
   this.actions$.pipe(
     ofType(createUser),
     mergeMap((action) =>
-    this.userService.createUser(action.data).pipe(
-      map((data) => createUserSuccess({ data })),
-      catchError((error) => of(createUserFailure({ error })))
+      this.userService.createUser(action.data)
+      .pipe(
+        map((data) => createUserSuccess({ data })),
+        catchError((error) => of(createUserFailure(error)))
       )
-      )
-      )
-      );
+    )
+  ));
 
- constructor(private actions$: Actions, private userService: UserService) {}
+  constructor(
+   private actions$: Actions, 
+   private userService: UserService
+  ) {}
 
 }

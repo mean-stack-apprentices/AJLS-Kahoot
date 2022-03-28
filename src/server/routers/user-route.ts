@@ -20,15 +20,14 @@ userRouter.post("/create-user", function (req, res) {
         password: hash,
         age,
       });
-
       user
         .save()
         .then((data) => {
-          res.json({ data });
+          res.json({ message: "Account created Successfully", data });
         })
         .catch((err) => {
           res.status(501);
-          res.json({ errors: err });
+          res.json(err);
         });
     });
   });
@@ -37,26 +36,27 @@ userRouter.post("/create-user", function (req, res) {
 userRouter.get("/login", function (req, res) {
   const username = req.body.username;
   const password = req.body.password;
-  UserModel.findOne({ username })
-    .then((user) => {
-      if (!user) {
-        res.status(401).send("Invalid username");
-        return;
-      } else {
-        if (user?.password == password) {
-          const accessToken = jwt.sign({ user }, access_secret);
-          console.log("Token", accessToken);
-          res.cookie("jwt", accessToken, {
-            httpOnly: true,
-            maxAge: 60 * 60 * 1000,
-          });
-          res.json({ message: "Successfully Logged In", user });
+  UserModel
+  .findOne({ username })
+  .then((user) => {
+    if (!user) {
+      res.status(401).send("Invalid username");
+      return;
+    } else {
+      if (user?.password == password) {
+        const accessToken = jwt.sign({ user }, access_secret);
+        console.log("Token", accessToken);
+        res.cookie("jwt", accessToken, {
+          httpOnly: true,
+          maxAge: 60 * 60 * 1000,
+        });
+        res.json({ message: "Successfully Logged In", user });
         } else {
           res.status(401).send("Invalid password");
         }
       }
     })
     .catch((err) => {
-      res.status(501).json({ errors: err });
+      res.status(501).json(err);
     });
 });

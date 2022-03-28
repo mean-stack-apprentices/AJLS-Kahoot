@@ -13,7 +13,6 @@ export class UserService {
   constructor(private api:ApiService,private router: Router) { }
 
   createUser(user: User){
-    console.log("SERVICE",user)
     return this.api.post<{data: User}, User>(`${this.routeString}create-user`,user).pipe(map((res)=>res.data))
   }
 }
