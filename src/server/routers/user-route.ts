@@ -33,7 +33,7 @@ userRouter.post("/create-user", function (req, res) {
   });
 });
 
-userRouter.get("/login", function (req, res) {
+userRouter.post("/login", function (req, res) {
   const username = req.body.username;
   const password = req.body.password;
   UserModel
