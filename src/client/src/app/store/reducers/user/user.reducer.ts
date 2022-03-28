@@ -24,10 +24,10 @@ export const reducer = createReducer(
   on(createUserSuccess, (state, action) => {
     const users = [...state.users];
     users.push(action.data);
-    return {...state, users, signUpSuccess: "Account created successfully"}
+    return {...state, users, signUpFailure: null, signUpSuccess: "Account created successfully"}
   }),
   on(createUserFailure,(state, action) => {
-    return {...state, signUpFailure: action.error.message}
+    return {...state, signUpSuccess:null, signUpFailure: action.error.message}
   } )
 );
 
