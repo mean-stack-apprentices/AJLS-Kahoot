@@ -3,8 +3,10 @@ import { UserModel } from "../schemas/user.schema.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import bcrypt from "bcrypt";
+import { authHandler } from "../middleware/auth.middleware.js";
 
 dotenv.config();
+
 export const userRouter = express.Router();
 const access_secret = process.env.ACCESS_TOKEN_SECRET as string;
 
@@ -63,3 +65,13 @@ userRouter.post("/login", function (req, res) {
       res.status(501).json(err);
     });
 });
+
+userRouter.get("/logout", function (req, res){
+res.cookie("jwt", "", {
+  httpOnly: true,
+  maxAge: 60*60*1000,
+});
+res.json({ message: "Successfully Logged Out"})
+});
+
+
