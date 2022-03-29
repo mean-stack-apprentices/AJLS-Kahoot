@@ -31,3 +31,7 @@ export const loginUserFailure = createAction(
   '[User] Login User Failure',
   props<{ error: Error }>()
 );
+
+export const navigateOnLoginSuccess = createAction(
+  '[User] Navigate on Login Success'
+)
