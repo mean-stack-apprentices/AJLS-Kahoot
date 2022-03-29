@@ -16,7 +16,7 @@ import { loginFailureSelector } from 'src/app/store/selectors/user/user.selector
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginFailMsg$: Observable<string>;
-    constructor( private fb: FormBuilder, private store: Store<AppState>) {
+    constructor( private fb: FormBuilder,private store: Store<AppState>) {
 
       this.loginFailMsg$ = this.store.select(loginFailureSelector );
       this.loginForm = this.fb.group({
