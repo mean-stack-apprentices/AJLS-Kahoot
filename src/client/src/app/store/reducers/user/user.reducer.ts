@@ -40,7 +40,7 @@ export const reducer = createReducer(
 
   on(loginUserFailure, (state, action)=>{
     console.log(action.error, "Wrong Information")
-    return {...state, loginFailureMsg:'Wrong Information'}
+    return {...state, loginFailureMsg:'Invalid username or password'}
 }),
 );
 
