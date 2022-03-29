@@ -17,4 +17,17 @@ export const createUserFailure = createAction(
   '[User] Create User Failure',
   props<{ error: Error }>()
 );
+export const loginUser = createAction(
+  '[User] Login User',
+  props<{data: Partial<User>}>()
+);
 
+export const loginUserSuccess = createAction(
+  '[User] Login User Success',
+  props<{ data: User }>()
+);
+
+export const loginUserFailure = createAction(
+  '[User] Login User Failure',
+  props<{ error: Error }>()
+);
