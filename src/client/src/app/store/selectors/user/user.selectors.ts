@@ -12,4 +12,9 @@ export const signUpFailureSelector = createSelector(
 export const signUpSuccessSelector = createSelector(
     userFeatureSelector,
     (state) => state.signUpSuccess
-)
+);
+
+ export const loginFailureSelector = createSelector(
+   userFeatureSelector,
+   (state) => state.loginFailureMsg
+ );
