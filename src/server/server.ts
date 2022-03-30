@@ -2,10 +2,10 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
+import cookieParser from "cookie-parser";
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { apiRouter } from './routers/api.routes.js';
-
 
 dotenv.config();
 
@@ -20,7 +20,7 @@ mongoose.connect(`${process.env.MONGO_URI}`)
 .catch(err => console.log('Failed to Connect to DB', err))
 
 
-
+app.use(cookieParser());
 app.use(cors());
 app.use(express.json());
 
