@@ -75,3 +75,7 @@ res.json({ message: "Successfully Logged Out"})
 });
 
 
+userRouter.get("/check-login", authHandler,
+function (req, res) {
+      res.json({ message: "You are logged in" });
+ });
