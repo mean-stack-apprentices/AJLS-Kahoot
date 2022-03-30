@@ -18,3 +18,8 @@ export const signUpSuccessSelector = createSelector(
    userFeatureSelector,
    (state) => state.loginFailureMsg
  );
+
+ export const loggedUserSelector = createSelector(
+   userFeatureSelector,
+   (state)=>state.loginUser
+ )
