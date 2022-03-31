@@ -15,6 +15,7 @@ import { UserEffects } from './store/effects/user/user.effects';
 import * as fromUser from './store/reducers/user/user.reducer';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { CreateQuiz1Component } from './components/create-quiz1/create-quiz1.component';
 
 
 
@@ -25,6 +26,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     LoginComponent,
     HomeComponent,
     NavbarComponent,
+    CreateQuiz1Component,
   ],
   imports: [
     BrowserModule,
