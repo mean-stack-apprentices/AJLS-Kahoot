@@ -53,7 +53,7 @@ userRouter.post("/login", function (req, res) {
           httpOnly: true,
           maxAge: 60 * 60 * 1000,
         });
-        res.json({ message: "Successfully Logged In", user });
+        res.json({ message: "Successfully Logged In", data:user });
         } else {
           res.status(401).send("Invalid password");
         }
