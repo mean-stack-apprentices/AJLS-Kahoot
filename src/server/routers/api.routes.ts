@@ -1,4 +1,5 @@
 import express, { NextFunction, Request, Response } from "express";
+import { quizRouter } from "./quiz-route.js";
 import { userRouter } from "./user-route.js";
 
 
@@ -6,6 +7,8 @@ export const apiRouter = express.Router();
 
 // Routes go here
 apiRouter.use('/users',userRouter);
+apiRouter.use('/quizzes',quizRouter);
+
 
 // response handler
 apiRouter.use((req,res,next) => {
