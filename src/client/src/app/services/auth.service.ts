@@ -25,4 +25,7 @@ export class AuthService {
     return of(this.router.navigate(['']));
   }
 
+  logout() {
+    return this.api.get(`${this.routeString}logout`);
+  }
 }
