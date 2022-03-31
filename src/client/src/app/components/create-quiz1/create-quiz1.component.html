@@ -1,1 +1,15 @@
-<p>create-quiz1 works!</p>
+<div class="main-div">
+    <div class="sub-main-div">
+      <div class="form-div">
+        <h2>Create Quiz</h2>
+        <form [formGroup]="createQuizForm">
+          <input type="text" placeholder="Enter quiz name" formControlName="title" />
+
+          <button type="submit" class="submit-button" [disabled]="createQuizForm.invalid"
+            > Go</button>
+            
+        </form>
+      </div>
+    </div>
+  </div>
+  
