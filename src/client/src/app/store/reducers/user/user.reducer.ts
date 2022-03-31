@@ -5,6 +5,7 @@ import {
   createUserSuccess,
   loginUserFailure,
   loginUserSuccess,
+  logoutUserSuccess,
 } from '../../actions/user/user.actions';
 
 export const userFeatureKey = 'user';
@@ -55,5 +56,10 @@ export const reducer = createReducer(
 
   on(loginUserFailure, (state, action) => {
     return { ...state, loginFailureMsg: 'Invalid username or password' };
+  }),
+
+  on(logoutUserSuccess, (state,action) => {
+    localStorage.removeItem('Token');
+    return {...state, loginUser: null}
   })
 );
