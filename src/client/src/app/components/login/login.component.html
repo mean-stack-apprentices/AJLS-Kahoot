@@ -7,7 +7,7 @@
           </label>
             <form [formGroup]="loginForm">
                 <input type="text" placeholder="Enter Username" formControlName="username" />
-                <input type="text" placeholder="Enter Password" formControlName="password" />
+                <input type="password" placeholder="Enter Password" formControlName="password" />
                 <button type="submit" class="submit-button" [disabled]="loginForm.invalid"
                 (click)="login()"> Log In </button>
                 <p class="message"> Need an Account? <a routerLink="/signup">Sign Up</a></p>
