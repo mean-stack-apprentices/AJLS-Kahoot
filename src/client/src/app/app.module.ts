@@ -16,6 +16,8 @@ import * as fromUser from './store/reducers/user/user.reducer';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CreateQuiz1Component } from './components/create-quiz1/create-quiz1.component';
+import { QuizEffects } from './store/effects/quiz/quiz.effects';
+import * as fromQuiz from './store/reducers/quiz/quiz.reducer';
 
 
 
@@ -36,8 +38,9 @@ import { CreateQuiz1Component } from './components/create-quiz1/create-quiz1.com
     ReactiveFormsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([UserEffects]),
+    EffectsModule.forRoot([UserEffects, QuizEffects]),
     StoreModule.forFeature(fromUser.userFeatureKey, fromUser.reducer),
+    StoreModule.forFeature(fromQuiz.quizFeatureKey, fromQuiz.reducer),
   ],
   providers: [],
   bootstrap: [AppComponent]
