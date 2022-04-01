@@ -1,17 +1,21 @@
 import { createAction, props } from "@ngrx/store";
 import type {Quiz} from "../../../../../../shared/models/quiz.model";
 
-export const createQuiz = createAction(
-    '[Quiz] Create Quiz',
+export const createQuizTitle = createAction(
+    '[Quiz] Create Quiz Title',
     props<{data: Quiz}>()
   );
   
-  export const createQuizSuccess = createAction(
-    '[Quiz] Create Quiz Success',
+  export const createQuizTitleSuccess = createAction(
+    '[Quiz] Create Quiz Title Success',
     props<{ data: Quiz }>()
   ); 
 
-  export const createQuizFailure = createAction(
-    '[Quiz] Create Quiz Failure',
+  export const createQuizTitleFailure = createAction(
+    '[Quiz] Create Quiz Title Failure',
     props<{  error: Error }>()
   );  
+
+  export const navigateToCreateQuestion = createAction(
+    '[Quiz] Navigate To Create Question'
+  );
