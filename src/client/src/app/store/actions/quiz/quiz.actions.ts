@@ -15,3 +15,7 @@ export const createQuiz = createAction(
     '[Quiz] Create Quiz Failure',
     props<{  error: Error }>()
   );  
+
+  export const navigateToCreateQuestion = createAction(
+    '[Quiz] Navigate To Create Question'
+  );
