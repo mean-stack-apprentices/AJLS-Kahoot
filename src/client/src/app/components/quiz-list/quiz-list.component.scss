@@ -1,0 +1,49 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+    box-sizing: border-box;
+}
+
+body{
+   
+    text-align: center;
+}
+article.gallery {
+    text-align: center;
+}
+article h2 {
+    font-size: 3em;
+    line-height: 2.25;
+    color: #069;
+    padding: 20px;
+}
+
+ul {
+    margin-left: 150px;
+    border-bottom: none;
+}
+li {
+    list-style-type: none;
+    padding: 10px;
+    margin: 10px 10px 0;
+    display: inline-block;
+    border: solid 1px #333;
+    min-width: 150px;
+    min-height: 120px;
+    background: rgb(18, 81, 122);
+    border-radius: 10px;
+    color: white;
+    
+}
+
+li:hover {
+    background: #069;
+    cursor: pointer;
+}
+
+li a {
+    color: white;
+   font-size: medium;
+}
