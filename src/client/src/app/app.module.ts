@@ -19,6 +19,7 @@ import { CreateQuiz1Component } from './components/create-quiz1/create-quiz1.com
 import { CreateQuizQuestionComponent } from './components/create-quiz-question/create-quiz-question.component';
 import { QuizEffects } from './store/effects/quiz/quiz.effects';
 import * as fromQuiz from './store/reducers/quiz/quiz.reducer';
+import { QuizListComponent } from './components/quiz-list/quiz-list.component';
 
 
 
@@ -31,6 +32,7 @@ import * as fromQuiz from './store/reducers/quiz/quiz.reducer';
     NavbarComponent,
     CreateQuiz1Component,
     CreateQuizQuestionComponent,
+    QuizListComponent,
   ],
   imports: [
     BrowserModule,
