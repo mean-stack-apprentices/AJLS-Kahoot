@@ -5,7 +5,7 @@
         <form [formGroup]="createQuizForm">
           <input type="text" placeholder="Enter quiz name" formControlName="title" />
 
-          <button type="submit" class="submit-button" [disabled]="createQuizForm.invalid"
+          <button type="submit" class="submit-button" (click)="createQuiz()" [disabled]="createQuizForm.invalid"
             > Go</button>
             
         </form>

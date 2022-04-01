@@ -34,7 +34,20 @@ label{
   font-weight: bold;
   text-decoration: none;
   padding-top: 14px;
-
-
 }
 
+#title-link {
+  color: orange;
+  font-size: 20px;
+}
+
+#title-link:hover{
+  color: white;
+  background-color: orange;
+}
+
+.user-link {
+  color: rgb(209, 131, 5);
+  font-size: 17px;
+  width: 15px;
+}
