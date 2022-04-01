@@ -21,9 +21,5 @@ quizRouter.post("/create-quiz", function (req, res) {
       });
 });
 
-quizRouter.post('/create-quiz-question', function(req,res){
-  
-  QuizProcess.createQuestionAndUpdateQuiz
-
-});
+quizRouter.post('/create-quiz-question',QuizProcess.createQuestionAndUpdateQuiz);
 
