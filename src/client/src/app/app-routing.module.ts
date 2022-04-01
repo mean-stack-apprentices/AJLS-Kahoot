@@ -5,15 +5,15 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 
 import { SignupComponent } from './components/signup/signup.component';
-import { CreateQuiz1Component } from './components/create-quiz1/create-quiz1.component';
 import { CreateQuizQuestionComponent } from './components/create-quiz-question/create-quiz-question.component';
+import { CreateQuizTitleComponent } from './components/create-quiz-title/create-quiz-title.component';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'create-quiz1', component: CreateQuiz1Component},
+  {path: 'create-quiz-title', component: CreateQuizTitleComponent},
   {path: 'create-question', component: CreateQuizQuestionComponent},
 ];
 
