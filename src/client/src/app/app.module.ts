@@ -17,6 +17,8 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CreateQuiz1Component } from './components/create-quiz1/create-quiz1.component';
 import { CreateQuizQuestionComponent } from './components/create-quiz-question/create-quiz-question.component';
+import { QuizEffects } from './store/effects/quiz/quiz.effects';
+import * as fromQuiz from './store/reducers/quiz/quiz.reducer';
 
 
 
@@ -38,8 +40,9 @@ import { CreateQuizQuestionComponent } from './components/create-quiz-question/c
     ReactiveFormsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([UserEffects]),
+    EffectsModule.forRoot([UserEffects, QuizEffects]),
     StoreModule.forFeature(fromUser.userFeatureKey, fromUser.reducer),
+    StoreModule.forFeature(fromQuiz.quizFeatureKey, fromQuiz.reducer),
   ],
   providers: [],
   bootstrap: [AppComponent]
