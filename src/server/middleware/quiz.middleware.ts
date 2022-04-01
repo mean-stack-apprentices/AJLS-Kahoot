@@ -3,8 +3,6 @@ import { QuestionModel } from "../schemas/question.schema.js";
 import { QuizModel } from "../schemas/quiz.schema.js";
 
 export function createQuestionAndUpdateQuiz( req: Request, res: Response, next: NextFunction ){
-  //const {question_title, answers} = req.body; 
-   
   const question = new QuestionModel({
     question_title : req.body.question_title,
     answers: req.body.answers
@@ -13,8 +11,6 @@ export function createQuestionAndUpdateQuiz( req: Request, res: Response, next: 
   .save()
   .then(data => {
       console.log("question created");
-      res.json({data});
-      console.log("quizId: ",req.body.quizId);
       QuizModel
       .findOneAndUpdate(
           {
@@ -33,8 +29,9 @@ export function createQuestionAndUpdateQuiz( req: Request, res: Response, next: 
                 return; 
               }
               else {
-                console.log("quiz updated");
-                next(); 
+                console.log("quiz updated:",updateQuiz);
+                res.json(updateQuiz);
+                return;
               }
           }
       )
