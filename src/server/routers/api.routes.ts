@@ -1,6 +1,6 @@
 import express, { NextFunction, Request, Response } from "express";
-import { quizRouter } from "./quiz-route.js";
-import { userRouter } from "./user-route.js";
+import { quizRouter } from "./quiz.routes.js";
+import { userRouter } from "./user.routes.js";
 
 
 export const apiRouter = express.Router();

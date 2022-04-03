@@ -8,7 +8,8 @@ const questionSchema = new Schema<Question>({
     answers: [
         {
             option:{type: String, required: true},
-            correct:{type: Boolean, required: true}
+            correct:{type: Boolean, required: true},
+            _id: false
         }
     ]
 });

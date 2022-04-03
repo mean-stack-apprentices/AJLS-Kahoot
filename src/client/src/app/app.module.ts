@@ -15,7 +15,7 @@ import { UserEffects } from './store/effects/user/user.effects';
 import * as fromUser from './store/reducers/user/user.reducer';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { CreateQuiz1Component } from './components/create-quiz1/create-quiz1.component';
+import { CreateQuizTitleComponent } from './components/create-quiz-title/create-quiz-title.component';
 import { CreateQuizQuestionComponent } from './components/create-quiz-question/create-quiz-question.component';
 import { QuizEffects } from './store/effects/quiz/quiz.effects';
 import * as fromQuiz from './store/reducers/quiz/quiz.reducer';
@@ -30,7 +30,7 @@ import { QuizListComponent } from './components/quiz-list/quiz-list.component';
     LoginComponent,
     HomeComponent,
     NavbarComponent,
-    CreateQuiz1Component,
+    CreateQuizTitleComponent,
     CreateQuizQuestionComponent,
     QuizListComponent,
   ],

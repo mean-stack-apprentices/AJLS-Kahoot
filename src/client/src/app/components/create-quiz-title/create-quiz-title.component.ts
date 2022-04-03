@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store';
-import { createQuiz } from 'src/app/store/actions/quiz/quiz.actions';
+import { createQuizTitle } from 'src/app/store/actions/quiz/quiz.actions';
 
 @Component({
-  selector: 'app-create-quiz1',
-  templateUrl: './create-quiz1.component.html',
-  styleUrls: ['./create-quiz1.component.scss']
+  selector: 'app-create-quiz-title',
+  templateUrl: './create-quiz-title.component.html',
+  styleUrls: ['./create-quiz-title.component.scss']
 })
-export class CreateQuiz1Component implements OnInit {
+export class CreateQuizTitleComponent implements OnInit {
   createQuizForm: FormGroup;
   
   constructor(
@@ -26,7 +26,7 @@ export class CreateQuiz1Component implements OnInit {
   }
 
   createQuiz() {
-    this.store.dispatch(createQuiz({ data: this.createQuizForm.value }));
+    this.store.dispatch(createQuizTitle({ data: this.createQuizForm.value }));
     this.createQuizForm.reset();
   }
 
