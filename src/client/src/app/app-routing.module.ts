@@ -7,8 +7,8 @@ import { HomeComponent } from './components/home/home.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { CreateQuizQuestionComponent } from './components/create-quiz-question/create-quiz-question.component';
 
-import { QuizListComponent } from './components/quiz-list/quiz-list.componen
-import { CreateQuizTitleComponent } from './components/create-quiz-title/create-quiz-title.componen
+import { QuizListComponent } from './components/quiz-list/quiz-list.component'
+import { CreateQuizTitleComponent } from './components/create-quiz-title/create-quiz-title.component'
 
 
 const routes: Routes = [
@@ -16,7 +16,6 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
   {path: 'quiz-list', component: QuizListComponent},
-  {path: 'create-quiz1', component: CreateQuiz1Component},
   {path: 'create-quiz-title', component: CreateQuizTitleComponent},
   {path: 'create-question', component: CreateQuizQuestionComponent},
 ];
