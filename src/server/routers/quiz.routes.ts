@@ -5,7 +5,7 @@ import * as QuizProcess from "./../middleware/quiz.middleware.js";
 
 export const quizRouter = express.Router();
 
-quizRouter.post("/create-quiz", function (req, res) {
+quizRouter.post("/create-quiz-title", function (req, res) {
     const {title} = req.body;
 
     const quiz = new QuizModel({
