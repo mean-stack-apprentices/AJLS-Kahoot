@@ -13,4 +13,8 @@ export class SocketService {
     this.socket.on('connect', () => {})
   }
 
+  getMessage() {
+    return this.socket.fromEvent<string>('message');
+  }
+
 }
