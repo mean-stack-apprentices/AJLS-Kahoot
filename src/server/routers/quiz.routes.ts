@@ -27,7 +27,7 @@ quizRouter.post(
 	QuizProcess.createQuestionAndUpdateQuiz
 );
 
-quizRouter.get("/quizzes", function (req, res) {
+quizRouter.get("/", function (req, res) {
 	QuizModel.find()
 		.then((data) => res.json({ data }))
 		.catch((err) => {

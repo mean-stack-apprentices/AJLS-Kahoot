@@ -11,10 +11,10 @@ import { ApiService } from './api.service';
 export class QuizService {
   routeString = 'quizzes/';
 
-  constructor( 
+  constructor(
     private api:ApiService,
-    private router: Router 
-  ) 
+    private router: Router
+  )
   { }
 
   createQuiz(quiz: Quiz){
@@ -23,6 +23,10 @@ export class QuizService {
 
   navigateToCreateQuestion() {
     return of(this.router.navigate(['/create-question']));
+  }
+
+  getQuizzes(){
+    return this.api.get<{ data:Quiz[]}>(`${this.routeString}`).pipe(map((res)=>res.data))
   }
 
 }
