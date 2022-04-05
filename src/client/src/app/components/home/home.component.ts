@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
+import { Observable } from 'rxjs';
+import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
   selector: 'app-home',
@@ -6,8 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  socketMessage$: Observable<string>;
 
-  constructor() { }
+  constructor(
+    private socket: Socket,
+    private socketService: SocketService
+  ) 
+  { 
+    this.socketMessage$ = this.socketService.getMessage();
+  }
 
   ngOnInit(): void {
   }
