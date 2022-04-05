@@ -40,6 +40,12 @@ app.get('/', function(req, res) {
 
 io.on('connection', (socket) => {
     console.log("user connected with SocketId: ", socket.id);
+    // disconnect socket when tab closed
+    socket.on('disconnect',() => {
+        console.log("user disconnected: ", socket.id);
+    })
+    // send message to client
+    socket.emit('message', 'welcome to sockets');
 })
 
 server.listen(PORT, function() {
