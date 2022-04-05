@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
+import { JoinGameComponent } from './components/join-game/join-game.component';
 
 import { HomeComponent } from './components/home/home.component';
 
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'join-game', component: JoinGameComponent},
   {path: 'quiz-list', component: QuizListComponent},
   {path: 'create-quiz-title', component: CreateQuizTitleComponent},
   {path: 'create-question', component: CreateQuizQuestionComponent},

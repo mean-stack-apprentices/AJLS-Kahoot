@@ -20,6 +20,7 @@ import { CreateQuizQuestionComponent } from './components/create-quiz-question/c
 import { QuizEffects } from './store/effects/quiz/quiz.effects';
 import * as fromQuiz from './store/reducers/quiz/quiz.reducer';
 import { QuizListComponent } from './components/quiz-list/quiz-list.component';
+import { JoinGameComponent } from './components/join-game/join-game.component';
 
 
 
@@ -33,6 +34,7 @@ import { QuizListComponent } from './components/quiz-list/quiz-list.component';
     CreateQuizTitleComponent,
     CreateQuizQuestionComponent,
     QuizListComponent,
+    JoinGameComponent,
   ],
   imports: [
     BrowserModule,
