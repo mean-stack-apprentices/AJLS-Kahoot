@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store';
@@ -13,7 +14,9 @@ import { Quiz } from '../../../../../shared/models/quiz.model';
 })
 export class QuizListComponent implements OnInit {
  quizzes$:Observable<Quiz[] | null>
-  constructor(private store:Store<AppState>) {
+
+  constructor(private store:Store<AppState>,
+    private router:Router) {
    this.quizzes$ = this.store.select(quizzesSelector)
   }
 
@@ -21,4 +24,7 @@ export class QuizListComponent implements OnInit {
     this.store.dispatch(loadQuizzes())
   }
 
+  goToDetails(){
+    this.router.navigate(['quiz-details']);
+  }
 }

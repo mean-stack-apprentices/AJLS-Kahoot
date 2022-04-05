@@ -2,7 +2,7 @@
   <article class="gallery">
     <ul>
       <li *ngFor="let quizz of quizzes$ | async">
-       <button>{{ quizz.title }}</button>
+       <button (click)="goToDetails()">{{ quizz.title }}</button>
       </li>
     </ul>
   </article>

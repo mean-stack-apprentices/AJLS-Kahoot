@@ -9,6 +9,7 @@ import { CreateQuizQuestionComponent } from './components/create-quiz-question/c
 
 import { QuizListComponent } from './components/quiz-list/quiz-list.component'
 import { CreateQuizTitleComponent } from './components/create-quiz-title/create-quiz-title.component'
+import { QuizDetailsComponent } from './components/quiz-details/quiz-details.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
   {path: 'quiz-list', component: QuizListComponent},
+  {path: 'quiz-details', component: QuizDetailsComponent},
   {path: 'create-quiz-title', component: CreateQuizTitleComponent},
   {path: 'create-question', component: CreateQuizQuestionComponent},
 ];
