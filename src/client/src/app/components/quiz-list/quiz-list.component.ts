@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AppState } from 'src/app/store';
+import { loadQuizzes } from 'src/app/store/actions/quiz/quiz.actions';
+import { quizzesSelector } from 'src/app/store/selectors/quiz/quiz.selectors';
+import { Quiz } from '../../../../../shared/models/quiz.model';
 
 @Component({
   selector: 'app-quiz-list',
@@ -6,10 +13,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./quiz-list.component.scss']
 })
 export class QuizListComponent implements OnInit {
+ quizzes$:Observable<Quiz[] | null>
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private store:Store<AppState>,
+    private router:Router) {
+   this.quizzes$ = this.store.select(quizzesSelector)
   }
 
+  ngOnInit(): void {
+    this.store.dispatch(loadQuizzes())
+  }
+
+  goToDetails(){
+    this.router.navigate(['quiz-details']);
+  }
 }

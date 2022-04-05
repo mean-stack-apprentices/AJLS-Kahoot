@@ -7,6 +7,9 @@ import {
   createQuizTitleSuccess,
   createQuizTitleFailure,
   navigateToCreateQuestion,
+  loadQuizzes,
+  loadQuizzesSuccess,
+  loadQuizzesFailure,
 } from '../../actions/quiz/quiz.actions';
 import { QuizService } from 'src/app/services/quiz.service';
 
@@ -24,16 +27,28 @@ export class QuizEffects {
     )
   );
 
-  navigateToCreateQuestion$ = createEffect(() => 
+  navigateToCreateQuestion$ = createEffect(() =>
     this.actions$.pipe(
       ofType(createQuizTitleSuccess),
-      mergeMap(() => 
+      mergeMap(() =>
         this.quizService.navigateToCreateQuestion().pipe(
           map(() => navigateToCreateQuestion())
         )
       )
     )
   );
+
+loadQuizzes$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(loadQuizzes),
+  mergeMap(() =>
+    this.quizService.getQuizzes().pipe(
+      map((data) => loadQuizzesSuccess ({ data })),
+      catchError((error) => of(loadQuizzesFailure({ error })))
+    )
+  )
+)
+);
 
   constructor(private actions$: Actions, private quizService: QuizService) {}
 }

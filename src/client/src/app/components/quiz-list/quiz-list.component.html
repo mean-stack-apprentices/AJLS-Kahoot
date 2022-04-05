@@ -1,9 +1,9 @@
 <body>
-    <article class="gallery">
-    <h2>Some of the Games in Kahoot!!</h2>
-   <ul>
-        <li>Quiz1</li>
-
+  <article class="gallery">
+    <ul>
+      <li *ngFor="let quizz of quizzes$ | async">
+       <button (click)="goToDetails()">{{ quizz.title }}</button>
+      </li>
     </ul>
-</article>
+  </article>
 </body>

@@ -7,7 +7,7 @@
 }
 
 body{
-   
+
     text-align: center;
 }
 
@@ -33,12 +33,13 @@ li {
     margin: 10px 10px 0;
     display: inline-block;
     border: solid 1px #333;
-    min-width: 150px;
-    min-height: 120px;
+    min-width: 300px;
+    min-height: 300px;
     background: rgb(18, 81, 122);
     border-radius: 10px;
     color: white;
-    
+    font-size: 30px;
+
 }
 
 li:hover {
@@ -49,4 +50,15 @@ li:hover {
 li a {
     color: white;
    font-size: medium;
+}
+
+button {
+  background-color: orange; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }

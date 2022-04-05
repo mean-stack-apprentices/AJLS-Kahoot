@@ -3,6 +3,7 @@ import { Quiz } from '../../../../../../shared/models/quiz.model';
 import {
   createQuizTitleFailure,
   createQuizTitleSuccess,
+  loadQuizzesSuccess,
 } from '../../actions/quiz/quiz.actions';
 
 export const quizFeatureKey = 'quiz';
@@ -37,5 +38,9 @@ export const reducer = createReducer(
       // createQuizSuccessMessage: null,
       // createQuizFailMessage: action.error.message,
     };
+  }),
+  
+  on(loadQuizzesSuccess,(state,action)=>{
+    return {...state, quizs:action.data}
   })
 );

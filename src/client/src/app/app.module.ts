@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
@@ -20,9 +21,13 @@ import { CreateQuizQuestionComponent } from './components/create-quiz-question/c
 import { QuizEffects } from './store/effects/quiz/quiz.effects';
 import * as fromQuiz from './store/reducers/quiz/quiz.reducer';
 import { QuizListComponent } from './components/quiz-list/quiz-list.component';
+<<<<<<< HEAD
 import { JoinGameComponent } from './components/join-game/join-game.component';
+=======
+import { QuizDetailsComponent } from './components/quiz-details/quiz-details.component';
+>>>>>>> development
 
-
+const config: SocketIoConfig = { url: !environment.production ? 'http://localhost:3501/' : '', options: {} };
 
 @NgModule({
   declarations: [
@@ -34,13 +39,18 @@ import { JoinGameComponent } from './components/join-game/join-game.component';
     CreateQuizTitleComponent,
     CreateQuizQuestionComponent,
     QuizListComponent,
+<<<<<<< HEAD
     JoinGameComponent,
+=======
+    QuizDetailsComponent,
+>>>>>>> development
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    SocketIoModule.forRoot(config),
     ReactiveFormsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
