@@ -21,11 +21,8 @@ import { CreateQuizQuestionComponent } from './components/create-quiz-question/c
 import { QuizEffects } from './store/effects/quiz/quiz.effects';
 import * as fromQuiz from './store/reducers/quiz/quiz.reducer';
 import { QuizListComponent } from './components/quiz-list/quiz-list.component';
-<<<<<<< HEAD
 import { JoinGameComponent } from './components/join-game/join-game.component';
-=======
 import { QuizDetailsComponent } from './components/quiz-details/quiz-details.component';
->>>>>>> development
 
 const config: SocketIoConfig = { url: !environment.production ? 'http://localhost:3501/' : '', options: {} };
 
@@ -39,11 +36,8 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     CreateQuizTitleComponent,
     CreateQuizQuestionComponent,
     QuizListComponent,
-<<<<<<< HEAD
     JoinGameComponent,
-=======
     QuizDetailsComponent,
->>>>>>> development
   ],
   imports: [
     BrowserModule,
