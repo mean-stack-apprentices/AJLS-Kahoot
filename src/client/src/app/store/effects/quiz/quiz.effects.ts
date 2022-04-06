@@ -30,8 +30,8 @@ export class QuizEffects {
   navigateToCreateQuestion$ = createEffect(() =>
     this.actions$.pipe(
       ofType(createQuizTitleSuccess),
-      mergeMap(() =>
-        this.quizService.navigateToCreateQuestion().pipe(
+      mergeMap((action) => 
+        this.quizService.navigateToCreateQuestion(action.data).pipe(
           map(() => navigateToCreateQuestion())
         )
       )
