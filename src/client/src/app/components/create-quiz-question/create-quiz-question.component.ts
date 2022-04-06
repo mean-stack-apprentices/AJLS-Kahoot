@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-quiz-question',
@@ -8,8 +9,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CreateQuizQuestionComponent implements OnInit {
   createQuestionForm: FormGroup;
+  queryQuizId : String | null = null;
+
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private activatedRoute: ActivatedRoute
   ) 
   { 
     this.createQuestionForm = this.fb.group({
@@ -28,6 +32,9 @@ export class CreateQuizQuestionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe(params =>{
+      this.queryQuizId = params.get('quizId');
+    });
   }
 
 }

@@ -21,8 +21,8 @@ export class QuizService {
     return this.api.post<{data: Quiz}, Quiz>(`${this.routeString}create-quiz-title`,quiz).pipe(map((res)=>res.data))
   }
 
-  navigateToCreateQuestion() {
-    return of(this.router.navigate(['/create-question']));
+  navigateToCreateQuestion(quiz: Quiz) {
+    return of(this.router.navigate(['/create-question/'+ quiz._id]));
   }
 
   getQuizzes(){
