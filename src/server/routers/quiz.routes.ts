@@ -7,31 +7,42 @@ import * as QuizProcess from "./../middleware/quiz.middleware.js";
 export const quizRouter = express.Router();
 
 quizRouter.post("/create-quiz-title", function (req, res) {
-	const { title } = req.body;
+  const { title } = req.body;
 
-	const quiz = new QuizModel({
-		title,
-	});
-	quiz
-		.save()
-		.then((data) => {
-			res.json({ message: "Quiz title created Successfully", data });
-		})
-		.catch((err) => {
-			res.status(501).json(err);
-		});
+  const quiz = new QuizModel({
+    title,
+  });
+  quiz
+    .save()
+    .then((data) => {
+      res.json({ message: "Quiz title created Successfully", data });
+    })
+    .catch((err) => {
+      res.status(501).json(err);
+    });
+});
+
+quizRouter.get("/quiz/:id", async function (req: any, res) {
+  await QuizModel.findById(req.params.id)
+
+    .populate("questions")
+    .lean()
+    .then((data) => {
+      res.status(200).json({ data })
+	})
+	.catch((err) => res.status(501).json(err))
 });
 
 quizRouter.post(
-	"/create-quiz-question",
-	QuizProcess.createQuestionAndUpdateQuiz
+  "/create-quiz-question",
+  QuizProcess.createQuestionAndUpdateQuiz
 );
 
 quizRouter.get("/", function (req, res) {
-	QuizModel.find()
-		.then((data) => res.json({ data }))
-		.catch((err) => {
-			res.status(501);
-			res.json({ errors: err });
-		});
+  QuizModel.find()
+    .then((data) => res.json({ data }))
+    .catch((err) => {
+      res.status(501);
+      res.json({ errors: err });
+    });
 });
