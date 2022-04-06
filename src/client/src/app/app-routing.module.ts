@@ -19,7 +19,7 @@ const routes: Routes = [
   {path: 'quiz-list', component: QuizListComponent},
   {path: 'quiz-details', component: QuizDetailsComponent},
   {path: 'create-quiz-title', component: CreateQuizTitleComponent},
-  {path: 'create-question', component: CreateQuizQuestionComponent},
+  {path: 'create-question/:quizId', component: CreateQuizQuestionComponent},
 ];
 
 @NgModule({
