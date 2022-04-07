@@ -19,7 +19,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'join-game', component: JoinGameComponent},
   {path: 'quiz-list', component: QuizListComponent},
-  {path: 'quiz-details', component: QuizDetailsComponent},
+  {path: 'quiz-details/:quizId', component: QuizDetailsComponent},
   {path: 'create-quiz-title', component: CreateQuizTitleComponent},
   {path: 'create-question/:quizId', component: CreateQuizQuestionComponent},
 ];
