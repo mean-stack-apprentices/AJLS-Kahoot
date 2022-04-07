@@ -24,7 +24,7 @@ export class QuizListComponent implements OnInit {
     this.store.dispatch(loadQuizzes())
   }
 
-  goToDetails(){
-    this.router.navigate(['quiz-details']);
+  goToDetails(quiz: Quiz){
+    this.router.navigate(['quiz-details/'+ quiz._id]);
   }
 }
