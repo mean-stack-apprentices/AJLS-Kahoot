@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Quiz } from '../../../../../shared/models/quiz.model';
 
 @Component({
   selector: 'app-quiz-details',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizDetailsComponent implements OnInit {
 
-  constructor() { }
+  QuizId : String | null = null;
+
+  constructor(
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe( params => {
+      this.QuizId = params.get('quizId');
+    });
   }
 
 }
