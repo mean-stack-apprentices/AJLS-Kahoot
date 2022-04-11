@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store';
+import { selectedQuizSelector } from 'src/app/store/selectors/quiz/quiz.selectors';
 import { Quiz } from '../../../../../shared/models/quiz.model';
 
 @Component({
@@ -11,10 +14,17 @@ import { Quiz } from '../../../../../shared/models/quiz.model';
 export class QuizDetailsComponent implements OnInit {
 
   QuizId : String | null = null;
-
+  selectedQuiz$: Observable<Quiz | null>;
+  
   constructor(
-    private activatedRoute: ActivatedRoute
-  ) { }
+    private activatedRoute: ActivatedRoute,
+    private store: Store<AppState>
+  ) { 
+    this.selectedQuiz$ = this.store.select(selectedQuizSelector);
+  }
+  
+
+ 
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe( params => {

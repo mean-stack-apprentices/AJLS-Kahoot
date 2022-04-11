@@ -10,6 +10,9 @@ import {
   loadQuizzes,
   loadQuizzesSuccess,
   loadQuizzesFailure,
+  loadQuizDetailsSuccess,
+  loadQuizDetails,
+  loadQuizDetailsFailure,
 } from '../../actions/quiz/quiz.actions';
 import { QuizService } from 'src/app/services/quiz.service';
 
@@ -45,6 +48,18 @@ this.actions$.pipe(
     this.quizService.getQuizzes().pipe(
       map((data) => loadQuizzesSuccess ({ data })),
       catchError((error) => of(loadQuizzesFailure({ error })))
+    )
+  )
+)
+);
+
+loadQuizDetails$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(loadQuizDetails),
+  mergeMap(() =>
+    this.quizService.getQuizDetails().pipe(
+      map((data) => loadQuizDetailsSuccess ({ data })),
+      catchError((error) => of(loadQuizDetailsFailure({ error })))
     )
   )
 )

@@ -26,7 +26,11 @@ export class QuizService {
   }
 
   getQuizzes(){
-    return this.api.get<{ data:Quiz[]}>(`${this.routeString}`).pipe(map((res)=>res.data))
+    return this.api.get<{data:Quiz[]}>(`${this.routeString}`).pipe(map((res)=>res.data))
+  }
+
+  getQuizDetails(){
+    return this.api.get<{data:Quiz[]}>(`${this.routeString}`).pipe(map((res)=>res.data))
   }
 
 }
