@@ -35,23 +35,19 @@ export const createQuizTitle = createAction(
     props<{  error: Error }>()
   );
 
-  export const selectQuizAction = createAction(
+  export const selectQuiz = createAction(
     '[Quiz] Select Quiz',
-    props<{ data: Quiz | null }>()
-  );
-  
-
-  export const loadQuizDetails = createAction(
-    '[Quiz] Load Quiz Details',
-
+    props<{ data: Quiz }>()
   );
 
-  export const loadQuizDetailsSuccess = createAction(
-    '[Quiz] Load Quiz Details Success',
-    props<{ data: Quiz[] }>()
+  export const selectQuizSuccess = createAction(
+    '[Quiz] Select Quiz Success',
+    props<{ data: Quiz }>()
   );
 
-  export const loadQuizDetailsFailure = createAction(
-    '[Quiz] Load Quiz Details Failure',
+  export const selectQuizFailure = createAction(
+    '[Quiz] Select Quiz Failure',
     props<{  error: Error }>()
   );
+
+  
