@@ -29,8 +29,8 @@ export class QuizService {
     return this.api.get<{data:Quiz[]}>(`${this.routeString}`).pipe(map((res)=>res.data))
   }
 
-  getQuizDetails(){
-    return this.api.get<{data:Quiz[]}>(`${this.routeString}`).pipe(map((res)=>res.data))
+  getQuizDetails(quiz: Quiz){
+    return this.api.get<{data:Quiz}>(`${this.routeString}quiz/`+ quiz._id).pipe(map((res)=>res.data))
   }
 
 }
