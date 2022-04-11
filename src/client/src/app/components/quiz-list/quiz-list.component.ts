@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store';
-import { loadQuizzes } from 'src/app/store/actions/quiz/quiz.actions';
+import { loadQuizzes, selectQuiz } from 'src/app/store/actions/quiz/quiz.actions';
 import { quizzesSelector } from 'src/app/store/selectors/quiz/quiz.selectors';
 import { Quiz } from '../../../../../shared/models/quiz.model';
 
@@ -25,6 +25,7 @@ export class QuizListComponent implements OnInit {
   }
 
   goToDetails(quiz: Quiz){
+    this.store.dispatch(selectQuiz({data:quiz}));
     this.router.navigate(['quiz-details/'+ quiz._id]);
   }
 }
