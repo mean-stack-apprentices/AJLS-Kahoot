@@ -1,24 +1,23 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { Quiz } from '../../../../../../shared/models/quiz.model';
 import {
   createQuizTitleFailure,
   createQuizTitleSuccess,
+  selectQuizSuccess,
   loadQuizzesSuccess,
-} from '../../actions/quiz/quiz.actions';
+  } from '../../actions/quiz/quiz.actions';
 
 export const quizFeatureKey = 'quiz';
 
 export interface State {
   quizs: Quiz[];
-  // createQuizTitleSuccessMessage: string | null;
-  // createQuizTitleFailMessage: string | null;
-}
+  selectedQuiz: Quiz | null;
+  }
 
 export const initialState: State = {
   quizs: [],
-  // createQuizTitleSuccessMessage: null,
-  // createQuizTitleFailMessage: null,
-};
+  selectedQuiz: null,
+  };
 
 export const reducer = createReducer(
   initialState,
@@ -35,12 +34,14 @@ export const reducer = createReducer(
   on(createQuizTitleFailure, (state, action) => {
     return {
       ...state
-      // createQuizSuccessMessage: null,
-      // createQuizFailMessage: action.error.message,
-    };
+         };
   }),
   
   on(loadQuizzesSuccess,(state,action)=>{
     return {...state, quizs:action.data}
+  }),
+
+  on(selectQuizSuccess,(state,action)=>{
+    return {...state, selectedQuiz:action.data}
   })
 );

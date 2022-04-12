@@ -8,3 +8,8 @@ export const quizzesSelector = createSelector(
   quizFeatureSelector,
   (state)=> state.quizs
 )
+
+export const selectedQuizSelector = createSelector(
+  quizFeatureSelector,
+  (state) => state.selectedQuiz
+);

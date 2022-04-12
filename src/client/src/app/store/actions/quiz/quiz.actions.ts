@@ -19,6 +19,7 @@ export const createQuizTitle = createAction(
   export const navigateToCreateQuestion = createAction(
     '[Quiz] Navigate To Create Question'
   );
+
   export const loadQuizzes = createAction(
     '[Quiz] Load Quiz Title',
 
@@ -33,3 +34,20 @@ export const createQuizTitle = createAction(
     '[Quiz] Load Quiz Title Failure',
     props<{  error: Error }>()
   );
+
+  export const selectQuiz = createAction(
+    '[Quiz] Select Quiz',
+    props<{ data: Quiz }>()
+  );
+
+  export const selectQuizSuccess = createAction(
+    '[Quiz] Select Quiz Success',
+    props<{ data: Quiz }>()
+  );
+
+  export const selectQuizFailure = createAction(
+    '[Quiz] Select Quiz Failure',
+    props<{  error: Error }>()
+  );
+
+  
