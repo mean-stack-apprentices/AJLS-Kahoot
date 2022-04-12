@@ -9,6 +9,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 import { apiRouter } from './routers/api.routes.js';
+import { addPlayer, getPlayers, removePlayer, setHost } from './game.js';
 
 dotenv.config();
 
@@ -40,11 +41,19 @@ app.get('/', function(req, res) {
 
 io.on('connection', (socket) => {
     console.log("user connected with SocketId: ", socket.id);
+
+    addPlayer({socketId: socket.id});
+    console.log("Players = ",getPlayers());
+
     // disconnect socket when tab closed
     socket.on('disconnect',() => {
         console.log("user disconnected: ", socket.id);
-    })
-    // send message to client
+
+        removePlayer(socket.id); // remove from players array
+        console.log("Players(after deletion) = ",getPlayers());
+    });
+
+    // test: send message to client
     socket.emit('message', 'welcome to sockets');
 })
 
