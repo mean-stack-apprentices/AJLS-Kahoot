@@ -37,6 +37,7 @@
 
 
 import type { Game } from "../shared/models/game.model.js";
+import { Player } from "../shared/models/player.model.js";
 
 export const game: Game = {
     phases: ['start quiz', 'lobby', 'question', 'leaderboard'],
@@ -44,6 +45,41 @@ export const game: Game = {
     quiz: null
 }
 
+export function getPlayers() {
+    return game.players;
+}
+
+// step 1: add socket id to players array
+export function addPlayer(player: Player) {
+    game.players.push(player);
+}
+
+// remove socket id from players array
+export function removePlayer(socket_id: string) {
+    game.players = game.players.filter(player => player.socketId !== socket_id);
+
+    return game.players;
+}
+
+// step 2: set player as host
+export function setHost(socket_id: string){
+    if(!hostExists()) {
+        let player = findBySocket(socket_id);
+        if(player) {
+            player.host = true
+        }
+    }
+}
+
+// find player by socket id
+function findBySocket(socket_id: string) {
+    return game.players.find(player => player.socketId === socket_id);
+}
+
+
+function hostExists() {
+    return game.players.find(player => player.host)
+}
 
 
 

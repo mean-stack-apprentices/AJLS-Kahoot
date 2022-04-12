@@ -17,4 +17,9 @@ export class SocketService {
     return this.socket.fromEvent<string>('message');
   }
 
+  // set host to true for current socket id
+  startQuiz() {
+    return this.socket.emit('start quiz');
+  }
+
 }
