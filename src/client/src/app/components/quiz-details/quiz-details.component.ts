@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store';
 import { selectedQuizSelector } from 'src/app/store/selectors/quiz/quiz.selectors';
+import { SocketService } from 'src/app/services/socket.service';
 import { Quiz } from '../../../../../shared/models/quiz.model';
 
 @Component({
@@ -19,16 +20,21 @@ export class QuizDetailsComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private store: Store<AppState>
-  ) { 
-    
+    private store: Store<AppState>,
+    private socketService: SocketService
+  ) 
+  { 
     this.selectedQuiz$ = this.store.select(selectedQuizSelector);
-      }
-  
+  }
+
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe( params => {
       this.QuizId = params.get('quizId');
-        });
-        
+    });
   }
+
+  startQuiz() {
+    this.socketService.startQuiz();
+  }
+  
 }
