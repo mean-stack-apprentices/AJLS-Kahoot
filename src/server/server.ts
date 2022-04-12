@@ -53,6 +53,13 @@ io.on('connection', (socket) => {
         console.log("Players(after deletion) = ",getPlayers());
     });
 
+    // set host to true
+    socket.on('start quiz', () => {
+        console.log("set host ",socket.id);
+        setHost(socket.id);
+        console.log("Players(after set host) = ",getPlayers());
+    })
+
     // test: send message to client
     socket.emit('message', 'welcome to sockets');
 })
