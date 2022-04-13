@@ -9,7 +9,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 import { apiRouter } from './routers/api.routes.js';
-import { addPlayer, getPlayers, removePlayer, setHost } from './game.js';
+import { addPlayer, game, getPlayers, removePlayer, setHost } from './game.js';
 
 dotenv.config();
 
@@ -42,7 +42,18 @@ app.get('/', function(req, res) {
 io.on('connection', (socket) => {
     console.log("user connected with SocketId: ", socket.id);
 
-    addPlayer({socketId: socket.id});
+    // add player only if gamepin is valid and player is not duplicate
+    // else send error message
+    socket.on('validate gamepin', (pin: string) => {
+        const isValidPin = addPlayer({socketId: socket.id}, pin);
+        if(!isValidPin) {
+            console.log("not a valid game pin OR player already exists")
+        }
+        else {
+            socket.emit('route','lobby')
+        }
+        console.log("Players = ",getPlayers());
+    })
     console.log("Players = ",getPlayers());
 
     // disconnect socket when tab closed
@@ -58,6 +69,7 @@ io.on('connection', (socket) => {
         console.log("set host ",socket.id);
         setHost(socket.id);
         console.log("Players(after set host) = ",getPlayers());
+        console.log("game = ", game);
     })
 
     // test: send message to client
