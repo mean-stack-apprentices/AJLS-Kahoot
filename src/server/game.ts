@@ -51,14 +51,19 @@ export function getPlayers() {
 }
 
 // step 1: add socket id to players array
-export function addPlayer(player: Player) {
-    game.players.push(player);
+export function addPlayer(player: Player, pin: string) {
+
+    // add player if gamepin matches and socketid is not duplicate
+    if(isGamePinValid(pin) && !findBySocket(player.socketId)) {
+        return game.players.push(player);
+    }
+    else 
+        return false;
 }
 
 // remove socket id from players array
 export function removePlayer(socket_id: string) {
     game.players = game.players.filter(player => player.socketId !== socket_id);
-
     return game.players;
 }
 
