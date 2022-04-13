@@ -63,7 +63,7 @@ io.on('connection', (socket) => {
     })
 
     // test: send message to client
-    socket.emit('message', 'welcome to sockets');
+    socket.emit('message','Instructions: To create your own Kahoot quiz, log in and click create quiz. To start a new game, go to quiz list and click the Start button.')
 
     
 })
