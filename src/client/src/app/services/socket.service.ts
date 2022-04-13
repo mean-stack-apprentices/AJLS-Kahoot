@@ -22,4 +22,8 @@ export class SocketService {
     return this.socket.emit('start quiz');
   }
 
+  isValidPin(pin:string) {
+    return this.socket.emit('validate gamepin', pin);
+  }
+
 }
