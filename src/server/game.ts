@@ -38,6 +38,8 @@
 
 import type { Game } from "../shared/models/game.model.js";
 import { Player } from "../shared/models/player.model.js";
+import { Quiz } from "../shared/models/quiz.model.js";
+import { QuizModel } from "./schemas/quiz.schema.js";
 
 export const game: Game = {
     phases: ['start quiz', 'lobby', 'question', 'leaderboard'],
@@ -63,11 +65,12 @@ export function removePlayer(socket_id: string) {
 }
 
 // step 2: set player as host
-export function setHost(socket_id: string){
+export function setHost(socket_id: string, quiz:Quiz){
     if(!hostExists()) {
         let player = findBySocket(socket_id);
         if(player) {
             player.host = true
+            selectQuiz(quiz)
         }
     }
 }
@@ -80,4 +83,12 @@ function findBySocket(socket_id: string) {
 
 function hostExists() {
     return game.players.find(player => player.host)
+}
+
+
+
+export function selectQuiz(quiz:Quiz) {
+    game.quiz = quiz;
+    
+   
 }

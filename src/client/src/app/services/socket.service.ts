@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
+import { Quiz } from '../../../../shared/models/quiz.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class SocketService {
   }
 
   // set host to true for current socket id
-  startQuiz() {
-    return this.socket.emit('start quiz');
+  startQuiz(quiz:Quiz) {
+    return this.socket.emit('start quiz',quiz);
   }
 
 }
