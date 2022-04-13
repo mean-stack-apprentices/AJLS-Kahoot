@@ -95,4 +95,6 @@ function generateGamePin() {
     return randomStr;
 };
 
-
+function isGamePinValid(pin: string) {
+    return game.gamePin === pin
+};
