@@ -10,6 +10,7 @@ import dotenv from 'dotenv';
 
 import { apiRouter } from './routers/api.routes.js';
 import { addPlayer, game, getPlayers, removePlayer, setHost } from './game.js';
+import { Quiz } from '../shared/models/quiz.model.js';
 
 dotenv.config();
 
@@ -65,15 +66,18 @@ io.on('connection', (socket) => {
     });
 
     // set host to true
-    socket.on('start quiz', () => {
+    socket.on('start quiz', (quiz:Quiz) => {
         console.log("set host ",socket.id);
-        setHost(socket.id);
+        setHost(socket.id,quiz);
         console.log("Players(after set host) = ",getPlayers());
         console.log("game = ", game);
+        console.log("START GAME", JSON.stringify(game, null, 4))
     })
 
     // test: send message to client
     socket.emit('message', 'welcome to sockets');
+
+    
 })
 
 server.listen(PORT, function() {

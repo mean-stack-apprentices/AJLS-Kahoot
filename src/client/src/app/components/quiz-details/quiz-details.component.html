@@ -1,5 +1,8 @@
 <p>quiz-details works!</p>
 {{QuizId}}
-{{selectedQuiz$ |  async | json}}
 
-<button (click)="startQuiz()">Start</button>
+{{selectedQuiz$ |  async | json}}
+<div *ngIf="(selectedQuiz$ | async) as selectedQuiz">
+  <button (click)="startQuiz(selectedQuiz)">Start</button>
+</div>
+
