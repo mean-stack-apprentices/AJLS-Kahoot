@@ -6,10 +6,13 @@
     <a routerLink="/game-pin" routerLinkActive="active-list">Play</a>
   </li>
   <li>
-    <a routerLink="/create-quiz-title" routerLinkActive="active-list">Create Quiz</a>
+    <a *ngIf = "(loggedInUser$ | async)" routerLink="/create-quiz-title" routerLinkActive="active-list">Create Quiz</a>
   </li>
   <li>
-    <a routerLink="/signup" routerLinkActive="active-list">Sign up</a>
+    <a *ngIf = "(loggedInUser$ | async)" routerLink="/quiz-list" routerLinkActive="active-list">Quiz List</a>
+  </li>
+  <li>
+    <a *ngIf = "!(loggedInUser$ | async)" routerLink="/signup" routerLinkActive="active-list">Sign up</a>
   </li>
   <li>
     <a *ngIf = "!(loggedInUser$ | async)" routerLink="/login" routerLinkActive="active-list">Log In</a>

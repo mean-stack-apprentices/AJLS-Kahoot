@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   navigateOnLogin() {
-    return of(this.router.navigate(['']));
+    return of(this.router.navigate(['quiz-list']));
   }
 
   logout() {
