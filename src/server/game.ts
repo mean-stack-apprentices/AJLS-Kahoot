@@ -42,7 +42,8 @@ import { Player } from "../shared/models/player.model.js";
 export const game: Game = {
     phases: ['start quiz', 'lobby', 'question', 'leaderboard'],
     players: [],
-    quiz: null
+    quiz: null,
+    gamePin: null
 }
 
 export function getPlayers() {
@@ -51,7 +52,7 @@ export function getPlayers() {
 
 // step 1: add socket id to players array
 export function addPlayer(player: Player) {
-    game.players.push(player);
+        game.players.push(player);
 }
 
 // remove socket id from players array
@@ -80,7 +81,3 @@ function findBySocket(socket_id: string) {
 function hostExists() {
     return game.players.find(player => player.host)
 }
-
-
-
-

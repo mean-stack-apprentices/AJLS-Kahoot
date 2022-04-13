@@ -5,4 +5,5 @@ export interface Game{
     phases: string[];
     players: Player[];
     quiz: Quiz | null;
+    gamePin: string | null;
 }
