@@ -52,7 +52,7 @@ export function getPlayers() {
 
 // step 1: add socket id to players array
 export function addPlayer(player: Player) {
-        game.players.push(player);
+    game.players.push(player);
 }
 
 // remove socket id from players array
@@ -67,7 +67,7 @@ export function setHost(socket_id: string){
     if(!hostExists()) {
         let player = findBySocket(socket_id);
         if(player) {
-            player.host = true
+            player.host = true;
         }
     }
 }
@@ -81,3 +81,18 @@ function findBySocket(socket_id: string) {
 function hostExists() {
     return game.players.find(player => player.host)
 }
+
+// generate 6 digit random number
+function generateGamePin() {
+    let randomStr = '';
+    for(let i = 0; i<6; i++)   
+    {
+        let randomNum;
+        // generate random number between 0 and 9
+        randomNum = Math.floor(Math.random() * 9) 
+        randomStr += randomNum;
+    }
+    return randomStr;
+};
+
+
