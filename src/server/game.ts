@@ -68,6 +68,7 @@ export function setHost(socket_id: string){
         let player = findBySocket(socket_id);
         if(player) {
             player.host = true;
+            game.gamePin = generateGamePin();
         }
     }
 }
