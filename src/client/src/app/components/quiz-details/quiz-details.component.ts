@@ -33,8 +33,10 @@ export class QuizDetailsComponent implements OnInit {
     });
   }
 
-  startQuiz() {
-    this.socketService.startQuiz();
+  startQuiz(quiz:Quiz) {
+    this.socketService.startQuiz(quiz);
   }
+
+
   
 }
