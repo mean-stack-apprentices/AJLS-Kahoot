@@ -51,7 +51,7 @@ export function getPlayers() {
 }
 
 // step 1: add socket id to players array
-export function addPlayer(player: Player, pin: string) {
+export function addPlayer(player: Player, pin: any) {
 
     // add player if gamepin matches and socketid is not duplicate
     if(isGamePinValid(pin) && !findBySocket(player.socketId)) {
@@ -69,6 +69,7 @@ export function removePlayer(socket_id: string) {
 
 // step 2: set player as host
 export function setHost(socket_id: string){
+    addPlayer({socketId: socket_id}, null)
     if(!hostExists()) {
         let player = findBySocket(socket_id);
         if(player) {
