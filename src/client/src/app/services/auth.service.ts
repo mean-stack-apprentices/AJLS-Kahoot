@@ -28,4 +28,8 @@ export class AuthService {
   logout() {
     return this.api.get(`${this.routeString}logout`);
   }
+
+  navigateOnLogout() {
+    return of(this.router.navigate(['']));
+  }
 }
