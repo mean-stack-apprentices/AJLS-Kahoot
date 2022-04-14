@@ -39,7 +39,6 @@
 import type { Game } from "../shared/models/game.model.js";
 import { Player } from "../shared/models/player.model.js";
 import { Quiz } from "../shared/models/quiz.model.js";
-import { QuizModel } from "./schemas/quiz.schema.js";
 
 export const game: Game = {
     phases: ['start quiz', 'lobby', 'question', 'leaderboard'],
@@ -52,27 +51,26 @@ export function getPlayers() {
     return game.players;
 }
 
-// step 1: add socket id to players array
+// step 1: add player
 export function addPlayer(player: Player) {
-        game.players.push(player);
+    if(!findBySocket(player.socketId)) {
+        return game.players.push(player);
+    }
+    console.log("can not add! player already exists!");
+    return false;
 }
 
 // remove socket id from players array
 export function removePlayer(socket_id: string) {
     game.players = game.players.filter(player => player.socketId !== socket_id);
-
     return game.players;
 }
 
-// step 2: set player as host
-export function setHost(socket_id: string, quiz:Quiz){
-    if(!hostExists()) {
-        let player = findBySocket(socket_id);
-        if(player) {
-            player.host = true
-            selectQuiz(quiz)
-        }
-    }
+export function cleanGame()
+{
+    game.gamePin = null;
+    game.players = [];
+    game.quiz = null;  
 }
 
 // find player by socket id
@@ -80,15 +78,30 @@ function findBySocket(socket_id: string) {
     return game.players.find(player => player.socketId === socket_id);
 }
 
-
 function hostExists() {
     return game.players.find(player => player.host)
 }
 
+// generate 6 digit random number
+export function generateGamePin() {
+    let randomStr = '';
+    for(let i = 0; i<6; i++)   
+    {
+        let randomNum;
+        // generate random number between 0 and 9
+        randomNum = Math.floor(Math.random() * 9) 
+        randomStr += randomNum;
+    }
+    return randomStr;
+};
+
+export function isGamePinValid(pin: string) {
+    return game.gamePin === pin
+};
 
 
 export function selectQuiz(quiz:Quiz) {
-    game.quiz = quiz;
-    
-   
-}
+    game.quiz = quiz;   
+};
+
+

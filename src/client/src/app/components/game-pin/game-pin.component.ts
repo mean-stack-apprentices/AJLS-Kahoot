@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
   selector: 'app-game-pin',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GamePinComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private socketService: SocketService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  checkPin(pin: string) {
+    this.socketService.isValidPin(pin);
+  }
 }
