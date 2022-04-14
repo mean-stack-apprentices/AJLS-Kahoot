@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Socket } from 'ngx-socket-io';
 import { Quiz } from '../../../../shared/models/quiz.model';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +11,15 @@ import { Quiz } from '../../../../shared/models/quiz.model';
 export class SocketService {
 
   constructor(
-    private socket: Socket
-  ) 
-  { 
+    private socket: Socket,
+    private route: Router
+  )
+  {
     this.socket.on('connect', () => {})
+    this.socket.on('route',(url:string)=>{
+      this.route.navigate([url])
+    })
+
   }
 
   getMessage() {
