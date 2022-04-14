@@ -9,7 +9,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 import { apiRouter } from './routers/api.routes.js';
-import { addPlayer, cleanGame, game, generateGamePin, getPlayers, isGamePinValid, removePlayer, selectQuiz } from './game.js';
+import {addName,addPlayer, cleanGame, game, generateGamePin, getPlayers, isGamePinValid, removePlayer, selectQuiz } from './game.js';
 import { Quiz } from '../shared/models/quiz.model.js';
 
 dotenv.config();
@@ -47,11 +47,11 @@ io.on('connection', (socket) => {
     socket.on('validate gamepin', (pin: string) => {
         if(isGamePinValid(pin)) {
             addPlayer({socketId: socket.id});
-            socket.emit('route','add player name')
+            socket.emit('route','Join-game')
         }
         else {
             console.log("Wrong Game Pin");
-            socket.emit('route', 'Wrong pin');
+            socket.emit('message', 'Wrong pin');
         }
         console.log("players = ", getPlayers());
     }); 
@@ -73,6 +73,13 @@ io.on('connection', (socket) => {
         console.log("game = ", game);
     });
 
+    //Add Player Name
+    socket.on("add-name", (name)=>{
+        name = addName(name,socket.id)
+        console.log("ADD NAME",game)
+
+    })
+    
     // test: send message to client
     socket.emit('message', 'welcome to sockets');
 })
