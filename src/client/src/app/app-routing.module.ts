@@ -8,6 +8,7 @@ import { QuizListComponent } from './components/quiz-list/quiz-list.component'
 import { CreateQuizTitleComponent } from './components/create-quiz-title/create-quiz-title.component'
 import { QuizDetailsComponent } from './components/quiz-details/quiz-details.component';
 import { GamePinComponent } from './components/game-pin/game-pin.component';
+import { JoinGameComponent } from './components/join-game/join-game.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'quiz-details/:quizId', component: QuizDetailsComponent},
   {path: 'create-quiz-title', component: CreateQuizTitleComponent},
   {path: 'create-question/:quizId', component: CreateQuizQuestionComponent},
+  {path: 'Join-game', component:JoinGameComponent}
 ];
 
 @NgModule({
