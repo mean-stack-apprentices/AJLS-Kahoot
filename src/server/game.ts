@@ -51,15 +51,13 @@ export function getPlayers() {
     return game.players;
 }
 
-// step 1: add socket id to players array
-export function addPlayer(player: Player, pin: any) {
-
-    // add player if gamepin matches and socketid is not duplicate
-    if(isGamePinValid(pin) && !findBySocket(player.socketId)) {
+// step 1: add player
+export function addPlayer(player: Player) {
+    if(!findBySocket(player.socketId)) {
         return game.players.push(player);
     }
-    else 
-        return false;
+    console.log("can not add! player already exists!");
+    return false;
 }
 
 // remove socket id from players array
@@ -68,17 +66,11 @@ export function removePlayer(socket_id: string) {
     return game.players;
 }
 
-// step 2: set player as host
-export function setHost(socket_id: string, quiz: Quiz){
-    addPlayer({socketId: socket_id}, null)
-    if(!hostExists()) {
-        let player = findBySocket(socket_id);
-        if(player) {
-            player.host = true;
-            selectQuiz(quiz);
-            game.gamePin = generateGamePin();
-        }
-    }
+export function cleanGame()
+{
+    game.gamePin = null;
+    game.players = [];
+    game.quiz = null;  
 }
 
 // find player by socket id
@@ -86,13 +78,12 @@ function findBySocket(socket_id: string) {
     return game.players.find(player => player.socketId === socket_id);
 }
 
-
 function hostExists() {
     return game.players.find(player => player.host)
 }
 
 // generate 6 digit random number
-function generateGamePin() {
+export function generateGamePin() {
     let randomStr = '';
     for(let i = 0; i<6; i++)   
     {
@@ -104,7 +95,7 @@ function generateGamePin() {
     return randomStr;
 };
 
-function isGamePinValid(pin: string) {
+export function isGamePinValid(pin: string) {
     return game.gamePin === pin
 };
 
