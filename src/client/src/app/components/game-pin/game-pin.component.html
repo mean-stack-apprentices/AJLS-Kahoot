@@ -2,8 +2,8 @@
     <div class="sub-main-div">
         <div class="form-div">
             <h2 class="heading"> Kahoot!</h2>
-                <input type="text" placeholder="Enter Game PIN"/>
-                <button type="submit" class="submit-button">Enter</button>
+                <input type="text" placeholder="Enter Game PIN" #pin />
+                <button type="submit" class="submit-button" (click)="checkPin(pin.value)">Enter</button>
         </div>
     </div>
 </div>

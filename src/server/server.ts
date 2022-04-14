@@ -9,7 +9,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 import { apiRouter } from './routers/api.routes.js';
-import { addPlayer, game, getPlayers, removePlayer, setHost } from './game.js';
+import { addPlayer, cleanGame, game, generateGamePin, getPlayers, isGamePinValid, removePlayer, selectQuiz } from './game.js';
 import { Quiz } from '../shared/models/quiz.model.js';
 
 dotenv.config();
@@ -43,8 +43,18 @@ app.get('/', function(req, res) {
 io.on('connection', (socket) => {
     console.log("user connected with SocketId: ", socket.id);
 
-    addPlayer({socketId: socket.id});
-    console.log("Players = ",getPlayers());
+    // add player if gamepin is correct
+    socket.on('validate gamepin', (pin: string) => {
+        if(isGamePinValid(pin)) {
+            addPlayer({socketId: socket.id});
+            socket.emit('route','add player name')
+        }
+        else {
+            console.log("Wrong Game Pin");
+            socket.emit('route', 'Wrong pin');
+        }
+        console.log("players = ", getPlayers());
+    }); 
 
     // disconnect socket when tab closed
     socket.on('disconnect',() => {
@@ -54,20 +64,21 @@ io.on('connection', (socket) => {
         console.log("Players(after deletion) = ",getPlayers());
     });
 
-    // set host to true
+    // start quiz (1.reset game 2.select quiz 3.add player as host 4. generate gamepin)
     socket.on('start quiz', (quiz:Quiz) => {
-        console.log("set host ",socket.id);
-        setHost(socket.id,quiz);
-        console.log("Players(after set host) = ",getPlayers());
-        console.log("START GAME", JSON.stringify(game, null, 4))
-    })
+        cleanGame();
+        selectQuiz(quiz);
+        addPlayer({socketId: socket.id, host: true});
+        game.gamePin = generateGamePin();
+        console.log("game = ", game);
+    });
 
     // test: send message to client
     socket.emit('message', 'welcome to sockets');
-
-    
 })
 
 server.listen(PORT, function() {
     console.log( `listening to localhost http://localhost:${PORT}`);
 });
+
+
