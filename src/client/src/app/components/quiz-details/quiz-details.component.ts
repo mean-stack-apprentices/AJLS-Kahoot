@@ -15,7 +15,9 @@ import { Quiz } from '../../../../../shared/models/quiz.model';
 export class QuizDetailsComponent implements OnInit {
   QuizId : String | null = null;
   selectedQuiz$: Observable<Quiz | null>;
+  quesLength: Number | undefined;
   isShown: boolean = false;
+  buttonText: string = "Show Answers";
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -24,6 +26,9 @@ export class QuizDetailsComponent implements OnInit {
   ) 
   { 
     this.selectedQuiz$ = this.store.select(selectedQuizSelector);
+    this.selectedQuiz$.subscribe(quiz => {
+      this.quesLength = quiz?.questions?.length
+   })
   }
 
   ngOnInit(): void {
@@ -38,6 +43,10 @@ export class QuizDetailsComponent implements OnInit {
 
   toggleDiv() {
     this.isShown = !this.isShown;
+    if(this.isShown)
+      this.buttonText = "Hide Answers";
+    else 
+      this.buttonText = "Show Answers";
   }
 
 }
