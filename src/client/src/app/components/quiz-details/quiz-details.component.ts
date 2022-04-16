@@ -13,10 +13,9 @@ import { Quiz } from '../../../../../shared/models/quiz.model';
   styleUrls: ['./quiz-details.component.scss']
 })
 export class QuizDetailsComponent implements OnInit {
-
   QuizId : String | null = null;
-  
   selectedQuiz$: Observable<Quiz | null>;
+  isShown: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -37,6 +36,8 @@ export class QuizDetailsComponent implements OnInit {
     this.socketService.startQuiz(quiz);
   }
 
+  toggleDiv() {
+    this.isShown = !this.isShown;
+  }
 
-  
 }
