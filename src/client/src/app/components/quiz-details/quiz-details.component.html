@@ -1,8 +1,34 @@
-<p>quiz-details works!</p>
-{{QuizId}}
-
-{{selectedQuiz$ |  async | json}}
 <div *ngIf="(selectedQuiz$ | async) as selectedQuiz">
-  <button (click)="startQuiz(selectedQuiz)">Start</button>
+  <div class="title-div">
+    <h1>
+      {{selectedQuiz.title}}
+    </h1>
+  </div>
+  <div class="container-div">
+      <div class="left-div">
+        <button (click)="startQuiz(selectedQuiz)" class="form-button" id="round-colorful-btn">
+          Start
+        </button>
+      </div>
+      <div class="right-div">
+        <div *ngFor="let question of selectedQuiz.questions; let i = index;" class="ques-div">
+          <h3 id="text-ques">
+            Ques {{i+1}}: {{question.question_title}}
+          </h3>
+          <div *ngFor="let answer of question.answers; let i = index;"
+            [ngStyle] = "{'display' : isShown? 'block' : 'none'}">
+            <p id="text-option">
+              {{i+1}}. {{answer.option}}
+              <span id="text-correct" [ngStyle] = "{'background-color': answer.correct ? '#588c46' : '#d54848' }">
+                {{answer.correct}}
+              </span>
+            </p>
+              <hr>
+            </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
 </div>
 
