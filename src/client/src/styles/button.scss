@@ -1,3 +1,11 @@
+button:hover {
+    cursor: pointer;
+}
+
+button {
+    border-radius: 5px;
+}
+
 #btn {
     background-color: black;
 }
@@ -5,8 +13,21 @@
 #btn:active {
    margin-right: -10px;
 }
-#start-div{
 
+#round-colorful-btn {
+    width: 160px;
+    height: 100px;
+    border-radius: 70%;
+    font-size: 45px;
+    font-family: Marker Felt, fantasy;
+    animation: buttonmove 5s infinite;
+}
+
+#round-colorful-btn:active {
+    margin-left: -10px;
+}
+
+#start-div{
   background: rgb(1, 120, 199);
   animation: mymove 5s infinite;
   border: none;
@@ -18,10 +39,27 @@
   font-size: 26px;
   margin: 4px 2px;
   cursor: pointer;
+}
 
-  @keyframes mymove {
+@keyframes mymove {
     0%   {background: red;}
     100% {background: blue;}
-
 }
+
+@keyframes  buttonmove{
+    0%   {background: rgb(29, 180, 105);}
+    100% {background: orange;}
+  }
+  
+  @keyframes textcolors {
+    0% {color: rgb(72, 29, 180);}
+    100% {color: rgb(255, 0, 187);}
+  } 
+
+.toggle-btn {
+    color: white;
+    border-radius: 5px;
+    background-color: green;
+    border: transparent;
+    height: 30px;
 }
