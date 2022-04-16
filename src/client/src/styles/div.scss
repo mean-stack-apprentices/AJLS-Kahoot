@@ -10,17 +10,19 @@
     background-color: #61A4BC;
     height: 800px;
  }
- 
+
  #form {
      position: absolute;
      top: 45%;
-     width: 400px;  
+     width: 400px;
  }
- 
+
  .title {
      margin: 5px;
      color: #B590CA;
      font-size: 50px;
      font-family: Impact, fantasy;
  }
- 
+ #start-contaner{
+  float: right;
+ }
