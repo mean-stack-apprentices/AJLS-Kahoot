@@ -30,7 +30,7 @@
     font-size: 14px;
   }
   
-  .form-div button {
+  .form-button, .form-div button {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
@@ -46,13 +46,13 @@
     cursor: pointer;
   }
   
-  .form-div button:hover,
-  .form-div button:active,
-  .form-div button:focus {
+  .form-button:hover, .form-div button:hover,
+  .form-button:active, .form-div button:active,
+  .form-button:focus, .form-div button:focus {
     background: rgb(1, 120, 199);;
   }
   
-  .form-div button:disabled {
+  .form-button:disabled, .form-div button:disabled {
       background: rgb(171, 206, 230);
       cursor: default;
     }
