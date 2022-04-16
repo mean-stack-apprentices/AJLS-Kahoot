@@ -1,0 +1,26 @@
+#text-bold {
+    font-weight: bold;
+}
+
+#span-padding {
+    padding-left: 100px;
+}
+
+#text-ques {
+    padding-right: 10px;
+    margin-right: 10px; 
+    font-weight: bold;
+}
+
+#text-option {
+    padding-left: 10px;
+}
+
+#text-correct {
+    float: right; 
+    padding: 5px 8px; 
+    border-radius: 5px; 
+    color: white; 
+    width: 40px; 
+    text-align: center;
+}
