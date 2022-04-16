@@ -11,6 +11,13 @@
         </button>
       </div>
       <div class="right-div">
+        <div id="right-div-title">
+          <p id="text-bold">Total Questions({{quesLength}})
+          <span id="span-padding">
+            <button (click)="toggleDiv()" class="toggle-btn">{{buttonText}}</button>
+          </span>
+        </p>
+        </div>
         <div *ngFor="let question of selectedQuiz.questions; let i = index;" class="ques-div">
           <h3 id="text-ques">
             Ques {{i+1}}: {{question.question_title}}
@@ -28,7 +35,6 @@
         </div>
       </div>
   
-    </div>
   </div>
 </div>
 
