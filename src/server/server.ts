@@ -70,6 +70,7 @@ io.on('connection', (socket) => {
         selectQuiz(quiz);
         addPlayer({socketId: socket.id, host: true});
         game.gamePin = generateGamePin();
+        socket.emit('route','phase-lobby')
         console.log("game = ", game);
     });
 
