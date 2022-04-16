@@ -5,3 +5,23 @@
 #btn:active {
    margin-right: -10px;
 }
+#start-div{
+
+  background: rgb(1, 120, 199);
+  animation: mymove 5s infinite;
+  border: none;
+  color: white;
+  padding: 15px 60px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 26px;
+  margin: 4px 2px;
+  cursor: pointer;
+
+  @keyframes mymove {
+    0%   {background: red;}
+    100% {background: blue;}
+
+}
+}
