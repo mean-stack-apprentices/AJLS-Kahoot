@@ -9,7 +9,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 import { apiRouter } from './routers/api.routes.js';
-import {addName,addPlayer, cleanGame, game, generateGamePin, getPlayers, isGamePinValid, removePlayer, selectQuiz } from './game.js';
+import {addName,addPlayer, cleanGame, game, generateGamePin, getPlayers, isGamePinValid, isUniquePlayerName, removePlayer, selectQuiz } from './game.js';
 import { Quiz } from '../shared/models/quiz.model.js';
 
 dotenv.config();
@@ -75,7 +75,8 @@ io.on('connection', (socket) => {
 
     //Add Player Name
     socket.on("add-name", (name)=>{
-        name = addName(name,socket.id)
+        isUniquePlayerName(name) ? addName(name,socket.id) : socket.emit("message", "Name already taken, please choose another name ;))");
+        // name = addName(name,socket.id)
         console.log("ADD NAME",game)
 
     })
