@@ -1,0 +1,13 @@
+
+<div class="container">
+  <div *ngIf="gamePin$ |async  as pin" id="label-div">
+    <label>
+      <span style="font-size: 40px;">Game Pin:</span>
+      {{pin}}</label>
+  </div>
+  <hr>
+  <div id="start-contaner">
+      <button id="start-div">Start</button>
+  </div>
+</div>
+
