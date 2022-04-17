@@ -66,6 +66,12 @@ export function removePlayer(socket_id: string) {
     return game.players;
 }
 
+// check if playername is unique
+export function isUniquePlayerName(player_Name: string){
+    player_Name= player_Name.toLowerCase();
+    return !game.players.find( player => player.playerName === player_Name);
+}
+
 export function cleanGame()
 {
     game.gamePin = null;
