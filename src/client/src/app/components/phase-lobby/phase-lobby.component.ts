@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-phase-lobby',
@@ -6,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./phase-lobby.component.scss']
 })
 export class PhaseLobbyComponent implements OnInit {
-
-  constructor() { }
+gamePin$:Observable<String | null>
+  constructor(private socket:Socket) {
+     this.gamePin$ = this.socket.fromEvent<string>('get-pin')
+   }
 
   ngOnInit(): void {
   }
+
 
 }
