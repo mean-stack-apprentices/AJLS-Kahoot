@@ -71,6 +71,7 @@ io.on('connection', (socket) => {
         addPlayer({socketId: socket.id, host: true});
         game.gamePin = generateGamePin();
         socket.emit('route','phase-lobby')
+        socket.emit('get-pin',game.gamePin)
         console.log("game = ", game);
     });
 
@@ -80,6 +81,7 @@ io.on('connection', (socket) => {
         console.log("ADD NAME",game)
 
     })
+
     
     // test: send message to client
     socket.emit('message', 'welcome to sockets');
