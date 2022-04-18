@@ -1,9 +1,9 @@
 <body>
   <article class="gallery">
-    <ul>
-      <li *ngFor="let quiz of quizzes$ | async">
-       <button (click)="goToDetails(quiz)">{{ quiz.title }}</button>
-      </li>
-    </ul>
+    <div *ngFor="let quiz of quizzes$ | async;" (click)="goToDetails(quiz)" >
+      <div class="quiz-text-div">
+        {{ quiz.title }}
+      </div>
+    </div>
   </article>
 </body>
