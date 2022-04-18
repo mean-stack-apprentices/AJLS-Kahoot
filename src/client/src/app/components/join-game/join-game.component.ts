@@ -19,10 +19,11 @@ export class JoinGameComponent implements OnInit {
 
   addPlayer(name:string){
     this.socket.emit("add-name", name);
-    this.socket.on("message", (data:string)=>{
+    this.socket.on("error-message", (data:string)=>{
       this.errMsg = data;
       console.log(data);
+      
     })
     }
-
+   
 }
