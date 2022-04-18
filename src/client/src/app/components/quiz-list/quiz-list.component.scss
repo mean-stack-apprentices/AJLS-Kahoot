@@ -1,13 +1,10 @@
-
 * {
     margin: 0;
     padding: 0;
-    font-size: 10px;
     box-sizing: border-box;
 }
 
 body{
-
     text-align: center;
 }
 
@@ -15,50 +12,22 @@ article.gallery {
     text-align: center;
 }
 
-article h2 {
-    font-size: 3em;
-    line-height: 2.25;
-    color: #069;
-    padding: 20px;
-}
-
-ul {
-    margin-left: 150px;
-    border-bottom: none;
-}
-
-li {
-    list-style-type: none;
-    padding: 10px;
-    margin: 10px 10px 0;
+.quiz-parent-div {
+    height: 100%;
+    position: relative;
+    margin: 40px 10px 0 10px;
     display: inline-block;
-    border: solid 1px #333;
     min-width: 300px;
-    min-height: 300px;
-    background: rgb(18, 81, 122);
+    min-height: 200px;
+    background: white;
     border-radius: 10px;
-    color: white;
+    color: black;
     font-size: 30px;
-
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    max-width: 300px;
 }
 
-li:hover {
-    background: #069;
+.quiz-parent-div:hover {
+    background: rgb(192, 198, 200);
     cursor: pointer;
-}
-
-li a {
-    color: white;
-   font-size: medium;
-}
-
-button {
-  background-color: orange; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
 }
