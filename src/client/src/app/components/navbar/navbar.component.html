@@ -1,15 +1,15 @@
 <ul>
-  <li>
+  <li id="left-li">
     <a id="title-link" routerLink="/" routerLinkActive="active-list">Kahoot!</a>
   </li>
-  <li>
+  <li id="left-li">
     <a routerLink="/game-pin" routerLinkActive="active-list">Play</a>
   </li>
-  <li>
-    <a *ngIf = "(loggedInUser$ | async)" routerLink="/create-quiz-title" routerLinkActive="active-list">Create Quiz</a>
-  </li>
-  <li>
+  <li id="left-li">
     <a *ngIf = "(loggedInUser$ | async)" routerLink="/quiz-list" routerLinkActive="active-list">Quiz List</a>
+  </li>
+  <li id="left-li">
+    <a *ngIf = "(loggedInUser$ | async)" routerLink="/create-quiz-title" routerLinkActive="active-list">Create Quiz</a>
   </li>
   <li>
     <a *ngIf = "!(loggedInUser$ | async)" routerLink="/signup" routerLinkActive="active-list">Sign up</a>
