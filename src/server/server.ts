@@ -77,13 +77,13 @@ io.on('connection', (socket) => {
 
     //Add Player Name
     socket.on("add-name", (name)=>{
-        isUniquePlayerName(name) ? addName(name,socket.id) : socket.emit("message", "Name already taken, please choose another name ;))");
-        // name = addName(name,socket.id)
+        isUniquePlayerName(name) ? (addName(name,socket.id), socket.emit("error-message", null)) :
+         socket.emit("error-message", "Name already taken, please choose another name ;))");
+        
         console.log("ADD NAME",game)
 
     })
 
-    
     // test: send message to client
     socket.emit('message', 'welcome to sockets');
 })
