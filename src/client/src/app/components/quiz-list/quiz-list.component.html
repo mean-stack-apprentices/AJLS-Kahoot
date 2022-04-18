@@ -1,6 +1,6 @@
 <body>
   <article class="gallery">
-    <div *ngFor="let quiz of quizzes$ | async;" (click)="goToDetails(quiz)" >
+    <div *ngFor="let quiz of quizzes$ | async; let i=index;" (click)="goToDetails(quiz)" class="quiz-div"  id="left-li">
       <div class="quiz-text-div">
         {{ quiz.title }}
       </div>
