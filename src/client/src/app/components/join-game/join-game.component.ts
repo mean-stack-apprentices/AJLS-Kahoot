@@ -7,14 +7,23 @@ import { SocketService } from 'src/app/services/socket.service';
   templateUrl: './join-game.component.html',
   styleUrls: ['./join-game.component.scss']
 })
+
 export class JoinGameComponent implements OnInit {
+
+  errMsg: string | null= null;
+
     constructor(private socket:Socket) { }
 
   ngOnInit(): void {
   }
 
   addPlayer(name:string){
-    this.socket.emit("add-name", name)
+    this.socket.emit("add-name", name);
+    this.socket.on("error-message", (data:string)=>{
+      this.errMsg = data;
+      console.log(data);
+      
+    })
     }
-
+   
 }
