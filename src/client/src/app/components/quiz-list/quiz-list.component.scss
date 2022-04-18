@@ -31,3 +31,33 @@ article.gallery {
     background: rgb(192, 198, 200);
     cursor: pointer;
 }
+
+.bottom-right-child-div {
+    position: absolute;
+    bottom: 50px;
+    right: 30px;
+    font-size: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 0.5px 2px;
+}
+
+.quiz-text-child-div {
+    position: relative;
+    height: 30%;
+    bottom: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+img {
+    object-fit: cover;
+    width:300px;
+    height: 70%;
+    min-height: 200px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
