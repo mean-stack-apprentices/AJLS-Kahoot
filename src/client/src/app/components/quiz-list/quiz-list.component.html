@@ -2,6 +2,7 @@
   <article class="gallery">
     <div *ngFor="let quiz of quizzes$ | async; let i=index;" (click)="goToDetails(quiz)" class="quiz-div"  id="left-li">
       <img src="../../../assets/images/image{{getIndex(i)}}.jpeg" alt="quiz name">
+      <div class="bottom-right">{{quesCount(quiz)}} questions</div>
       <div class="quiz-text-div">
         {{ quiz.title }}
       </div>
