@@ -35,4 +35,8 @@ export class QuizListComponent implements OnInit {
     return Math.floor(i%4);
   }
 
+  quesCount(quiz: Quiz) {
+    return quiz.questions?.length;
+  }
+
 }
