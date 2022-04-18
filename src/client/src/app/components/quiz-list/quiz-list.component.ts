@@ -13,19 +13,30 @@ import { Quiz } from '../../../../../shared/models/quiz.model';
   styleUrls: ['./quiz-list.component.scss']
 })
 export class QuizListComponent implements OnInit {
- quizzes$:Observable<Quiz[] | null>
+  quizzes$:Observable<Quiz[] | null>
 
-  constructor(private store:Store<AppState>,
-    private router:Router) {
-   this.quizzes$ = this.store.select(quizzesSelector)
+  constructor(
+    private store:Store<AppState>,
+    private router:Router) 
+  {
+      this.quizzes$ = this.store.select(quizzesSelector);
   }
 
   ngOnInit(): void {
-    this.store.dispatch(loadQuizzes())
+    this.store.dispatch(loadQuizzes());
   }
 
   goToDetails(quiz: Quiz){
     this.store.dispatch(selectQuiz({data:quiz}));
     this.router.navigate(['quiz-details/'+ quiz._id]);
   }
+
+  getIndex(i: any) {
+    return Math.floor(i%4);
+  }
+
+  quesCount(quiz: Quiz) {
+    return quiz.questions?.length;
+  }
+
 }

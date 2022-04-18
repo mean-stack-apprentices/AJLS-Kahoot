@@ -7,7 +7,7 @@ ul {
 }
 
 li {
-    float: left;
+    float: right;
 }
 
 li a {
@@ -16,6 +16,7 @@ li a {
   color: rgb(0, 153, 255);
   text-align: center;
   padding: 8px;
+  font-size: 17px;
   font-weight: bold;
   text-decoration: none;
   min-width: 90px;
@@ -37,9 +38,14 @@ label{
 }
 
 #title-link {
+  margin: 0;
   color: orange;
   animation: textcolors 5s infinite;
   font-size: 20px;
+}
+
+#left-li {
+  float: left;
 }
 
 #title-link:hover{
@@ -49,6 +55,5 @@ label{
 
 .user-link {
   color: rgb(209, 131, 5);
-  font-size: 17px;
-  width: 15px;
+  font-size: 20px;
 }
