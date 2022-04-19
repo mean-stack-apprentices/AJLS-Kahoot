@@ -21,7 +21,7 @@ export class GamePinComponent implements OnInit {
 
   checkPin(pin: string) {
     this.socketService.isValidPin(pin);
-    this.socket.on("message", (data:string)=>{
+    this.socket.on("err-message", (data:string)=>{
       this.msg = data;
       console.log(data);
   })
