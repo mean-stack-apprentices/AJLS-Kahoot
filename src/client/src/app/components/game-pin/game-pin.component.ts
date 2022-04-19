@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
 import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
@@ -8,8 +9,11 @@ import { SocketService } from 'src/app/services/socket.service';
 })
 export class GamePinComponent implements OnInit {
 
+  msg: string | null= null;
+
   constructor(
-    private socketService: SocketService
+    private socketService: SocketService,
+    private socket:Socket
   ) { }
 
   ngOnInit(): void {
@@ -17,5 +21,9 @@ export class GamePinComponent implements OnInit {
 
   checkPin(pin: string) {
     this.socketService.isValidPin(pin);
-  }
+    this.socket.on("message", (data:string)=>{
+      this.msg = data;
+      console.log(data);
+  })
+}
 }
