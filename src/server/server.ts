@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { apiRouter } from './routers/api.routes.js';
 import { app, server } from './serverConfig.js';
+import io from './sockets.js';
 
 dotenv.config();
 

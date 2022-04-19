@@ -7,7 +7,7 @@ const io = new Server(server,{
     cors: { origin: '*' }
 });
 
-io.on('connection', (socket) => {
+export default io.on('connection', (socket) => {
     console.log("user connected with SocketId: ", socket.id);
 
     // add player if gamepin is correct
