@@ -77,10 +77,15 @@ io.on('connection', (socket) => {
 
     //Add Player Name
     socket.on("add-name", (name)=>{
-        isUniquePlayerName(name) ? (addName(name,socket.id), socket.emit("error-message", null)) :
+        if(isUniquePlayerName(name)){
+        socket.emit("error-message", null); 
+        addName(name,socket.id);
+        socket.emit('route','phase-waiting')
+        socket.emit('get-player', `Please Wait For The Game To Start..., Welcome ${name} You are in!`)
+        }
+        else{ 
          socket.emit("error-message", "Name already taken, please choose another name ;))");
-         socket.emit('route','phase-waiting')
-         socket.emit('get-player', `Welcome ${name} You are in!`)
+        }
     })
 
     // test: send message to client
