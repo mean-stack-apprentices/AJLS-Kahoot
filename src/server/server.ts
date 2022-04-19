@@ -75,7 +75,7 @@ io.on('connection', (socket) => {
         console.log("game = ", game);
     });
 
-    //Add Player Name
+    //Add Player Name if unique else send error message
     socket.on("add-name", (name)=>{
         isUniquePlayerName(name) ? (addName(name,socket.id), socket.emit("error-message", null)) :
          socket.emit("error-message", "Name already taken, please choose another name ;))");
