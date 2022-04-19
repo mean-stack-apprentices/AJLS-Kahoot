@@ -50,54 +50,61 @@ app.get("/", function (req, res) {
   res.json({ message: "test" });
 });
 
-io.on("connection", (socket) => {
-  console.log("user connected with SocketId: ", socket.id);
 
-  // add player if gamepin is correct else send error message
+io.on('connection', (socket) => {
+    console.log("user connected with SocketId: ", socket.id);
+
+    // add player if gamepin is correct
+    socket.on('validate gamepin', (pin: string) => {
+        if(isGamePinValid(pin)) {
+            addPlayer({socketId: socket.id});
+            socket.emit('route','Join-game')
+        }
+        else {
+            console.log("Wrong Game Pin");
+            socket.emit('message', 'Wrong pin');
+        }
+        console.log("players = ", getPlayers());
+    }); 
+
+    // disconnect socket when tab closed
+    socket.on('disconnect',() => {
+        console.log("user disconnected: ", socket.id);
+
+        removePlayer(socket.id); // remove from players array
+        console.log("Players(after deletion) = ",getPlayers());
+    });
+
+    // start quiz (1.reset game 2.select quiz 3.add player as host 4. generate gamepin)
+    socket.on('start quiz', (quiz:Quiz) => {
+        cleanGame();
+        selectQuiz(quiz);
+        addPlayer({socketId: socket.id, host: true});
+        game.gamePin = generateGamePin();
+        socket.emit('route','phase-lobby')
+        socket.emit('get-pin',game.gamePin)
+        console.log("game = ", game);
+    });
+
+    //Add Player Name
+    socket.on("add-name", (name)=>{
+        if(isUniquePlayerName(name)){
+        socket.emit("error-message", null); 
+        addName(name,socket.id);
+        socket.emit('route','phase-waiting')
+        socket.emit('get-player', `Please Wait For The Game To Start..., Welcome ${name} You are in!`)
+        }
+        else{ 
+         socket.emit("error-message", "Name already taken, please choose another name ;))");
+        }
+    })
+
+    // test: send message to client
+    socket.emit('message', 'welcome to sockets');
+})
+
+server.listen(PORT, function() {
+    console.log( `listening to localhost http://localhost:${PORT}`);
   
-  socket.on("validate gamepin", (pin) => {
-    isGamePinValid(pin)
-      ? (addPlayer({ socketId: socket.id }), socket.emit("route", "Join-game"))
-      : (console.log("Wrong Game Pin"), socket.emit("err-message", "Wrong Pin"));
+  
 
-    console.log("players = ", getPlayers());
-  });
-
-  // disconnect socket when tab closed
-  socket.on("disconnect", () => {
-    console.log("user disconnected: ", socket.id);
-
-    removePlayer(socket.id); // remove from players array
-    console.log("Players(after deletion) = ", getPlayers());
-  });
-
-  // start quiz (1.reset game 2.select quiz 3.add player as host 4. generate gamepin)
-  socket.on("start quiz", (quiz: Quiz) => {
-    cleanGame();
-    selectQuiz(quiz);
-    addPlayer({ socketId: socket.id, host: true });
-    game.gamePin = generateGamePin();
-    socket.emit("route", "phase-lobby");
-    socket.emit("get-pin", game.gamePin);
-    console.log("game = ", game);
-  });
-
-  //Add Player Name if unique else send error message
-  socket.on("add-name", (name) => {
-    isUniquePlayerName(name)
-      ? (addName(name, socket.id), socket.emit("error-message", null))
-      : socket.emit(
-          "error-message",
-          "Name already taken, please choose another name ;))"
-        );
-
-    console.log("ADD NAME", game);
-  });
-
-  // test: send message to client
-  socket.emit("message", "welcome to sockets");
-});
-
-server.listen(PORT, function () {
-  console.log(`listening to localhost http://localhost:${PORT}`);
-});
