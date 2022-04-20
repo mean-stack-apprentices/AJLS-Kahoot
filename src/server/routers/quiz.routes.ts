@@ -34,7 +34,7 @@ quizRouter.get("/quiz/:id", async function (req: any, res) {
 });
 
 quizRouter.post(
-  "/create-quiz-question",
+  "/create-quiz-question/:quizId",
   QuizProcess.createQuestionAndUpdateQuiz
 );
 

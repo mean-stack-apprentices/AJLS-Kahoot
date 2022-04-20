@@ -12,9 +12,9 @@ export function createQuestionAndUpdateQuiz( req: Request, res: Response, next: 
   .then(data => {
       console.log("question created");
       QuizModel
-      .findOneAndUpdate(
+      .findByIdAndUpdate(
           {
-            _id: req.body.quizId
+            _id: req.params.quizId
           },
           {
             $push: { questions: data._id }

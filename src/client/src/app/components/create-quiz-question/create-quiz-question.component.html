@@ -1,41 +1,74 @@
 <div class="main-div">
-    <div class="sub-main-div">
-      <div class="form-div">
-        <h2>Quiz: name of quiz</h2>
-        <form [formGroup]="createQuestionForm">
-          <input type="text" placeholder="Start typing your question" formControlName="question_title" />
+  <div class="sub-main-div">
+    <div class="form-div">
+      <h2>Quiz: name of quiz</h2>
+      <form [formGroup]="createQuestionForm">
+        <input
+          type="text"
+          placeholder="Start typing your question"
+          formControlName="question_title"
+        />
 
-          <input type="text" id="op1" placeholder="Add answer 1" formControlName="option1" />
-          <input type="text" id="op2" placeholder="Add answer 2" formControlName="option2" />
-          <input type="text" id="op3" placeholder="Add answer 3" formControlName="option3" />
-          <input type="text" id="op4" placeholder="Add answer 4" formControlName="option4" />
+        <input
+          type="text"
+          id="op1"
+          placeholder="Add answer 1"
+          formControlName="option1"
+        />
+        <input
+          type="text"
+          id="op2"
+          placeholder="Add answer 2"
+          formControlName="option2"
+        />
+        <input
+          type="text"
+          id="op3"
+          placeholder="Add answer 3"
+          formControlName="option3"
+        />
+        <input
+          type="text"
+          id="op4"
+          placeholder="Add answer 4"
+          formControlName="option4"
+        />
 
-          <div class="radio-div">
-            <label for="correct" class="radio-label">Correct Answer</label>
-            <div class="radio-button-div">
-                <label class="radio" id="op1">
-                    <input type="radio" value="1" name="correct" ngModel> Answer 1
-                </label>
-                <label class="radio" id="op2">
-                    <input type="radio" value="2" name="correct" ngModel> Answer 2
-                </label>
-                <label class="radio" id="op3">
-                    <input type="radio" value="3" name="correct" ngModel> Answer 3
-                </label>
-                <label class="radio" id="op4">
-                    <input type="radio" value="4" name="correct" ngModel> Answer 4
-                </label>
-              </div>
+        <div class="radio-div">
+          <label for="correct" class="radio-label">Correct Answer</label>
+          <div class="radio-button-div">
+            <label class="radio" id="op1">
+              <input type="radio" value="0" formControlName="correct"/> Answer 1
+            </label>
+            <label class="radio" id="op2">
+              <input type="radio" value="1" formControlName="correct"/> Answer 2
+            </label>
+            <label class="radio" id="op3">
+              <input type="radio" value="2" formControlName="correct"/> Answer 3
+            </label>
+            <label class="radio" id="op4">
+              <input type="radio" value="3" formControlName="correct"/> Answer 4
+            </label>
           </div>
-          
-          <button type="submit" class="ques-button" [disabled]="createQuestionForm.invalid"
-            >Add next question</button>
-          <button type="submit" class="ques-button" [disabled]="createQuestionForm.invalid"
-            >Finish Quiz</button> 
-            
-        </form>
-      </div>
+        </div>
+
+        <button
+          type="submit"
+          class="ques-button"
+          [disabled]="createQuestionForm.invalid"
+          (click) = "saveAndNext()"
+        >
+          Save & Add next question
+        </button>
+        <button
+          type="submit"
+          class="ques-button"
+          [disabled]="createQuestionForm.invalid"
+          (click)="saveAndFinish()"
+        >
+          Save & Finish Quiz
+        </button>
+      </form>
     </div>
   </div>
-  
-
+</div>
