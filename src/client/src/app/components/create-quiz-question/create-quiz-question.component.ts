@@ -52,6 +52,7 @@ export class CreateQuizQuestionComponent implements OnInit {
   }
 
   saveAndFinish() {
+    this.question = this.reshapeQuestion(this.createQuestionForm.value);
     this.quizService.createQuestion(this.question, this.queryQuizId);
     this.route.navigate(['quiz-list']);
   }
@@ -67,7 +68,7 @@ export class CreateQuizQuestionComponent implements OnInit {
     }
     let question = {
         question_title: ques.question_title,
-        answers: answers
+        answers
     }
     return question;
   }
