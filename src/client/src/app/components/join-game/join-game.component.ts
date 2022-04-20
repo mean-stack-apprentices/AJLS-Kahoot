@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
-import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
   selector: 'app-join-game',
