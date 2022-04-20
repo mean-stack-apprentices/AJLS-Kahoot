@@ -1,7 +1,8 @@
 
 <div *ngIf="player$ | async as player" id="player-div">
-  <span>{{player}}</span>
-
+  <span>{{player.displayName}}</span>
+  <br> <br>  
+  <span style="color: peru;">{{player.waitMsg}}</span>
 </div>
 
 

@@ -8,14 +8,13 @@ import { Observable } from 'rxjs/internal/Observable';
   styleUrls: ['./phase-waiting.component.scss']
 })
 export class PhaseWaitingComponent implements OnInit {
-  player$:Observable<String | null>
+  player$:Observable<any>
 
   constructor(private socket:Socket) {
-    this.player$ = this.socket.fromEvent<string>('get-player')
+    this.player$ = this.socket.fromEvent('get-player');
   }
 
   ngOnInit(): void {
   }
-
-
+  
 }
