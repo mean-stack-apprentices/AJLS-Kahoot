@@ -25,6 +25,7 @@ import { JoinGameComponent } from './components/join-game/join-game.component';
 import { QuizDetailsComponent } from './components/quiz-details/quiz-details.component';
 import { GamePinComponent } from './components/game-pin/game-pin.component';
 import { PhaseLobbyComponent } from './components/phase-lobby/phase-lobby.component';
+import { PhaseWaitingComponent } from './components/phase-waiting/phase-waiting.component';
 
 const config: SocketIoConfig = { url: !environment.production ? 'http://localhost:3501/' : '', options: {} };
 
@@ -42,6 +43,7 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     QuizDetailsComponent,
     GamePinComponent,
     PhaseLobbyComponent,
+    PhaseWaitingComponent,
   ],
   imports: [
     BrowserModule,

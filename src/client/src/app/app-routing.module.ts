@@ -10,6 +10,7 @@ import { QuizDetailsComponent } from './components/quiz-details/quiz-details.com
 import { GamePinComponent } from './components/game-pin/game-pin.component';
 import { JoinGameComponent } from './components/join-game/join-game.component';
 import { PhaseLobbyComponent } from './components/phase-lobby/phase-lobby.component';
+import { PhaseWaitingComponent } from './components/phase-waiting/phase-waiting.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: 'create-quiz-title', component: CreateQuizTitleComponent},
   {path: 'create-question/:quizId', component: CreateQuizQuestionComponent},
   {path: 'Join-game', component:JoinGameComponent},
-  {path: 'phase-lobby',component: PhaseLobbyComponent}
+  {path: 'phase-lobby',component: PhaseLobbyComponent},
+  {path: 'phase-waiting',component:PhaseWaitingComponent},
 
 ];
 
