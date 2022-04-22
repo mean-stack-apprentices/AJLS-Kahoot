@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container-div {
+    position: relative;
+    color: rgb(22, 24, 144);
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.instructions-div {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #dadee6;
+    border-radius: 5px;
+    font-size: 20px;
+    text-align: left;
+    max-width: 500px;
+    max-height: 300px;
+    padding: 20px;
+}
+
+#headline {
+    color: rgb(22, 24, 144);
+    font-weight: bolder;
+}
+
+img {
+    max-width: 100%;
+    height: 800px;
+    opacity: 0.9;
+}
