@@ -110,13 +110,3 @@ export function selectQuiz(quiz:Quiz) {
     game.quiz = quiz;   
 };
 
-
-//find player by socket and add name 
-export function addName(name:string, socket_id: string) {
-    const player= findBySocket(socket_id);
-    if(player){
-        player.playerName = name;
-
-       }
-       return player;
-}
