@@ -1,5 +1,4 @@
 import {
-  addName,
   addPlayer,
   cleanGame,
   game,
@@ -24,7 +23,6 @@ export default io.on("connection", (socket) => {
   // add player if gamepin is correct
   socket.on("validate gamepin", (pin: string) => {
     if (isGamePinValid(pin)) {
-      addPlayer({ socketId: socket.id });
       socket.emit("route", "Join-game");
     } else {
       console.log("Wrong Game Pin");
@@ -56,15 +54,13 @@ export default io.on("connection", (socket) => {
   socket.on("add-name", (name) => {
     if (isUniquePlayerName(name)) {
       socket.emit("error-message", null);
-      addName(name, socket.id);
+      addPlayer({ socketId: socket.id, playerName: name });
+      console.log("Game", game);
       socket.emit("route", "phase-waiting");
-      socket.emit(
-        "get-player",
-        {
-           "displayName":  `Welcome ${name}, You are in!`,
-           "waitMsg": "Please Wait For The Game To Start..."
-        }
-      );
+      socket.emit("get-player", {
+        displayName: `Welcome ${name}, You are in!`,
+        waitMsg: "Please Wait For The Game To Start...",
+      });
     } else {
       socket.emit(
         "error-message",
