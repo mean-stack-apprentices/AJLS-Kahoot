@@ -36,7 +36,7 @@ export class QuizService {
 
   createQuestion(question: Question, quizId: String | null) {
     console.log("services", question,quizId);
-    return this.api.post<{updatedQuiz: Quiz},Question>(`${this.routeString}create-quiz-question/`+quizId, question).subscribe();
+    return this.api.post<{data: Quiz},Question>(`${this.routeString}create-quiz-question/`+quizId, question);
   }
 
 }

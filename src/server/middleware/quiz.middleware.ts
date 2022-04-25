@@ -30,7 +30,7 @@ export function createQuestionAndUpdateQuiz( req: Request, res: Response, next: 
               }
               else {
                 console.log("quiz updated:",updateQuiz);
-                res.json({updateQuiz});
+                res.json({data:updateQuiz});
                 return;
               }
           }

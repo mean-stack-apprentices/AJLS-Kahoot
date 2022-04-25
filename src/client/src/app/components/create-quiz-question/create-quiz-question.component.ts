@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { QuizService } from 'src/app/services/quiz.service';
+import { AppState } from 'src/app/store';
+import { createQuizQuestion } from 'src/app/store/actions/quiz/quiz.actions';
 
 
 @Component({
@@ -18,7 +21,8 @@ export class CreateQuizQuestionComponent implements OnInit {
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private quizService: QuizService,
-    private route: Router
+    private route: Router,
+    private store: Store <AppState>
   ) 
   { 
     this.createQuestionForm = this.fb.group({
@@ -47,13 +51,13 @@ export class CreateQuizQuestionComponent implements OnInit {
   saveAndNext() {
     this.question = this.reshapeQuestion(this.createQuestionForm.value);
     console.log(this.question);
-    this.quizService.createQuestion(this.question, this.queryQuizId);
+    this.store.dispatch(createQuizQuestion({data:this.question, QuizId:this.queryQuizId}))
     this.createQuestionForm.reset();
   }
 
   saveAndFinish() {
     this.question = this.reshapeQuestion(this.createQuestionForm.value);
-    this.quizService.createQuestion(this.question, this.queryQuizId);
+    this.store.dispatch(createQuizQuestion({data:this.question, QuizId:this.queryQuizId}))
     this.route.navigate(['quiz-list']);
   }
 
@@ -72,5 +76,4 @@ export class CreateQuizQuestionComponent implements OnInit {
     }
     return question;
   }
-
 }

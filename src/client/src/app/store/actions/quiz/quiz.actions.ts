@@ -1,4 +1,5 @@
 import { createAction, props } from "@ngrx/store";
+import { Question } from "../../../../../../shared/models/question.model";
 import type {Quiz} from "../../../../../../shared/models/quiz.model";
 
 export const createQuizTitle = createAction(
@@ -47,6 +48,21 @@ export const createQuizTitle = createAction(
 
   export const selectQuizFailure = createAction(
     '[Quiz] Select Quiz Failure',
+    props<{  error: Error }>()
+  );
+
+  export const createQuizQuestion = createAction(
+    '[Quiz] Create Quiz Question',
+    props<{  data: Question, QuizId:String | null  }>()
+  );
+
+  export const createQuizQuestionSuccess = createAction(
+    '[Quiz] Create Quiz Question Success',
+    props<{  data:Quiz }>()
+  );
+
+  export const createQuizQuestionFailure = createAction(
+    '[Quiz] Create Quiz Question Failure',
     props<{  error: Error }>()
   );
 
