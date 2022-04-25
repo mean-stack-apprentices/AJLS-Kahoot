@@ -110,3 +110,8 @@ export function selectQuiz(quiz:Quiz) {
     game.quiz = quiz;   
 };
 
+export function getQuestion(){
+    return game.quiz?.questions?.find(question =>!question.completed)
+    
+}
+
