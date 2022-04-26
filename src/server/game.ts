@@ -117,3 +117,7 @@ export function getQuestion(){
 function getCorrectAnswer() {
     return getQuestion()?.answers.find(answer => answer.correct);
 }
+
+function hasEveryoneAnswered() {
+    return game.players.every(player => player.answer);
+}
