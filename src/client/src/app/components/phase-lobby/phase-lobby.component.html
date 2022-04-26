@@ -1,13 +1,16 @@
 
-<div class="container">
+<div>
   <div *ngIf="gamePin$ |async  as pin" id="label-div">
     <label>
       <span style="font-size: 40px;">Game Pin:</span>
       {{pin}}</label>
   </div>
   <hr>
-  <div id="start-contaner">
-      <button id="start-div">Start</button>
+  <div id="start-div">
+      <button id="start-btn">Start</button>
+  </div>
+  <div *ngFor ="let player of players; let i=index;" id="label-div">
+    <label style="font-size: 30px;">{{i+1}}. {{player.playerName}}</label>
   </div>
 </div>
 
