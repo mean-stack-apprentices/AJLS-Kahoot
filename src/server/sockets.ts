@@ -34,7 +34,6 @@ export default io.on("connection", (socket) => {
   // disconnect socket when tab closed
   socket.on("disconnect", () => {
     console.log("user disconnected: ", socket.id);
-
     removePlayer(socket.id); // remove from players array
     console.log("Players(after deletion) = ", getPlayers());
   });
@@ -45,6 +44,7 @@ export default io.on("connection", (socket) => {
     selectQuiz(quiz);
     addPlayer({ socketId: socket.id, host: true });
     game.gamePin = generateGamePin();
+    socket.join('room host');
     socket.emit("route", "phase-lobby");
     socket.emit("get-pin", game.gamePin);
     console.log("game = ", game);
@@ -56,6 +56,7 @@ export default io.on("connection", (socket) => {
       socket.emit("error-message", null);
       addPlayer({ socketId: socket.id, playerName: name });
       console.log("Game", game);
+      io.to('room host').emit("player joined", game.players);
       socket.emit("route", "phase-waiting");
       socket.emit("get-player", {
         displayName: `Welcome ${name}, You are in!`,
