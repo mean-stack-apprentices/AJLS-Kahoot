@@ -121,3 +121,24 @@ function getCorrectAnswer() {
 function hasEveryoneAnswered() {
     return game.players.every(player => player.answer);
 }
+
+export function playerAnswersQues(socketId: string, ans: string) {
+    const player = findBySocket(socketId);
+    // if player exists, save answer given by player
+    if(player) {
+        player.answer = ans;
+        // if all players answered, check if correct and give points
+        if(hasEveryoneAnswered()) {
+            game.players.forEach(player => {
+                if(!player.points)
+                    player.points = 0;
+
+                const correct = player.answer == getCorrectAnswer();
+
+                if(correct) {
+                        player.points += 5;
+                }
+            });
+        }
+    }
+}
