@@ -27,7 +27,7 @@ button {
     margin-left: -10px;
 }
 
-#start-div{
+#start-btn{
   background: rgb(1, 120, 199);
   animation: mymove 5s infinite;
   border: none;
@@ -35,7 +35,6 @@ button {
   padding: 15px 60px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 26px;
   margin: 4px 2px;
   cursor: pointer;
