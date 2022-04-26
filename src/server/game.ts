@@ -133,7 +133,7 @@ export function playerAnswersQues(socketId: string, ans: string) {
                 if(!player.points)
                     player.points = 0;
 
-                const correct = player.answer == getCorrectAnswer();
+                const correct = player.answer == getCorrectAnswer()?.option;
 
                 if(correct) {
                         player.points += 5;
