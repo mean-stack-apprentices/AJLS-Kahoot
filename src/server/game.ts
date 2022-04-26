@@ -138,7 +138,15 @@ export function playerAnswersQues(socketId: string, ans: string) {
                 if(correct) {
                         player.points += 5;
                 }
-            });
+                //make answer null after points given
+                player.answer = null;
+        });
+        // change question's completed value to true
+        const question = getQuestion();
+        if(question) {
+            question.completed = true;
+        }
+        return true;
         }
     }
 }
