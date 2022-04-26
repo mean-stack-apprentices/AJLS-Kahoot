@@ -58,13 +58,16 @@
      font-size: 50px;
      font-family: Impact, fantasy;
  }
- #start-contaner{
-  float: right;
- }
+
+#start-div{
+  text-align: right;
+  margin-right: 10%;
+}
+
 #label-div{
-font-size: 70px;
-text-align: center;
-font-weight: bold;
+    font-size: 70px;
+    text-align: center;
+    font-weight: bold;
 }
 
 #player-div{
@@ -74,4 +77,10 @@ font-weight: bold;
   font-size: 40px;
   color: green;
   font-family: Impact, fantasy;
+}
+
+#players-div {
+    margin: 20px;
+    align-items: center;
+    font-size: 20px;
 }
