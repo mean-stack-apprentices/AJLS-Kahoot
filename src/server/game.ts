@@ -111,7 +111,9 @@ export function selectQuiz(quiz:Quiz) {
 };
 
 export function getQuestion(){
-    return game.quiz?.questions?.find(question =>!question.completed)
-    
+    return game.quiz?.questions?.find(question =>!question.completed)   
 }
 
+function getCorrectAnswer() {
+    return getQuestion()?.answers.find(answer => answer.correct);
+}
