@@ -24,5 +24,9 @@ export class PhaseLobbyComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  startGame() {
 
+        this.socket.emit('go-to-question');
+
+}
 }
