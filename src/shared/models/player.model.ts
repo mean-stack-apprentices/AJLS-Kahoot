@@ -2,7 +2,7 @@ export interface Player{
     socketId: string;
     playerName?: string;
     host?: boolean;
-    answer?: string;
+    answer?: string | null;
     points?: number;
     done?: boolean;
 }

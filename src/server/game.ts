@@ -111,7 +111,42 @@ export function selectQuiz(quiz:Quiz) {
 };
 
 export function getQuestion(){
-    return game.quiz?.questions?.find(question =>!question.completed)
-    
+    return game.quiz?.questions?.find(question =>!question.completed)   
 }
 
+function getCorrectAnswer() {
+    return getQuestion()?.answers.find(answer => answer.correct);
+}
+
+function hasEveryoneAnswered() {
+    return game.players.every(player => player.answer);
+}
+
+export function playerAnswersQues(socketId: string, ans: string) {
+    const player = findBySocket(socketId);
+    // if player exists, save answer given by player
+    if(player) {
+        player.answer = ans;
+        // if all players answered, check if correct and give points
+        if(hasEveryoneAnswered()) {
+            game.players.forEach(player => {
+                if(!player.points)
+                    player.points = 0;
+
+                const correct = player.answer == getCorrectAnswer()?.option;
+
+                if(correct) {
+                        player.points += 5;
+                }
+                //make answer null after points given
+                player.answer = null;
+        });
+        // change question's completed value to true
+        const question = getQuestion();
+        if(question) {
+            question.completed = true;
+        }
+        return true;
+        }
+    }
+}
