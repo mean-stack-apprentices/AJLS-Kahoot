@@ -60,15 +60,21 @@ export default io.on("connection", (socket) => {
       socket.emit("route", "phase-waiting");
       socket.emit("get-player", {
         displayName: `Welcome ${name}, You are in!`,
-        waitMsg: "Please Wait For The Game To Start...",
-      });
+        waitMsg: "Please Wait For The Game To Start...",});
+      
     } else {
       socket.emit(
         "error-message",
         "Name already taken, please choose another name ;))"
-      );
-    }
-  });
+        );
+      }
+    });
+    
+  
+    //send Player to Question page
+    socket.on('go-to-question', ()=>{
+      io.emit('route','phase-question')
+    })
 
   // test: send message to client
   socket.emit("message", "welcome to sockets");
