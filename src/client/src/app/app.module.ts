@@ -27,6 +27,8 @@ import { GamePinComponent } from './components/game-pin/game-pin.component';
 import { PhaseLobbyComponent } from './components/phase-lobby/phase-lobby.component';
 import { PhaseWaitingComponent } from './components/phase-waiting/phase-waiting.component';
 import { PhaseQuestionComponent } from './components/phase-question/phase-question.component';
+import { AuthGuard } from './guards/auth.guard';
+
 
 const config: SocketIoConfig = { url: !environment.production ? 'http://localhost:3501/' : '', options: {} };
 
@@ -60,7 +62,7 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     StoreModule.forFeature(fromUser.userFeatureKey, fromUser.reducer),
     StoreModule.forFeature(fromQuiz.quizFeatureKey, fromQuiz.reducer),
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
