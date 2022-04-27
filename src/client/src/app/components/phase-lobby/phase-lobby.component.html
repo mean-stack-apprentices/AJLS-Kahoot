@@ -6,9 +6,11 @@
       {{pin}}</label>
   </div>
   <hr>
-  <div id="start-div">
-      <button id="start-btn">Start</button>
+
+  <div id="start-div" >
+      <button id="start-btn"(click)="startGame()" [disabled]="!players.length">Start</button>
   </div>
+
   <div *ngIf="!(players.length)" id="label-div">
     <label style="color: purple; font-size: 35px;">
       Waiting for players to join.....
