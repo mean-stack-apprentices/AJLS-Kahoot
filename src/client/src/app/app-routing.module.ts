@@ -11,6 +11,7 @@ import { GamePinComponent } from './components/game-pin/game-pin.component';
 import { JoinGameComponent } from './components/join-game/join-game.component';
 import { PhaseLobbyComponent } from './components/phase-lobby/phase-lobby.component';
 import { PhaseWaitingComponent } from './components/phase-waiting/phase-waiting.component';
+import { PhaseQuestionComponent } from './components/phase-question/phase-question.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -24,7 +25,7 @@ const routes: Routes = [
   {path: 'Join-game', component:JoinGameComponent},
   {path: 'phase-lobby',component: PhaseLobbyComponent},
   {path: 'phase-waiting',component:PhaseWaitingComponent},
-
+  {path: 'phase-question', component:PhaseQuestionComponent}
 ];
 
 @NgModule({
