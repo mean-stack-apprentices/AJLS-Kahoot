@@ -40,6 +40,20 @@ button {
   cursor: pointer;
 }
 
+#start-btn:disabled{
+  background-color: lightblue;
+  animation: none;
+  border: none;
+  color: white;
+  padding: 15px 60px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 26px;
+  margin: 4px 2px;
+  cursor: not-allowed;
+
+}
+
 @keyframes mymove {
     0%   {background: red;}
     100% {background: blue;}
@@ -49,11 +63,11 @@ button {
     0%   {background: rgb(29, 180, 105);}
     100% {background: orange;}
   }
-  
+
   @keyframes textcolors {
     0% {color: rgb(72, 29, 180);}
     100% {color: rgb(255, 0, 187);}
-  } 
+  }
 
 .toggle-btn {
     color: white;
