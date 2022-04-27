@@ -30,9 +30,9 @@ const routes: Routes = [
         path: 'create-question/:quizId',
         component: CreateQuizQuestionComponent,
       },
-      { path: 'phase-lobby', component: PhaseLobbyComponent },
     ],
   },
+  { path: 'phase-lobby', component: PhaseLobbyComponent },
   { path: 'Join-game', component: JoinGameComponent },
   { path: 'phase-waiting', component: PhaseWaitingComponent },
   {path: 'phase-question', component:PhaseQuestionComponent}
