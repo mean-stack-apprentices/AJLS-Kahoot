@@ -71,7 +71,7 @@ export default io.on("connection", (socket) => {
     });
     
   
-    //send Player to Question page
+    //Send All Player to Question page
     socket.on('go-to-question', ()=>{
       io.emit('route','phase-question')
     })
