@@ -10,19 +10,19 @@ export class ApiService {
   { }
 
   get<T>(resourceName: string) {
-    return this.http.get<T>(this.baseUrl + resourceName);
+    return this.http.get<T>(this.baseUrl + resourceName, { withCredentials: true });
   }
   //D is the data we send to the backend
   // T is the data we get from the db
   post<T,D>(resourceName: string, data: D) {
-    return this.http.post<T>(this.baseUrl + resourceName, data);
+    return this.http.post<T>(this.baseUrl + resourceName, data, { withCredentials: true });
   }
 
   delete<T>(resourceName: string) {
-    return this.http.delete<T>(this.baseUrl + resourceName);
+    return this.http.delete<T>(this.baseUrl + resourceName, { withCredentials: true });
   }
 
   put<T,D>(resourceName: string, data: D) {
-    return this.http.put<T>(this.baseUrl + resourceName, data);
+    return this.http.put<T>(this.baseUrl + resourceName, data, { withCredentials: true });
   }
 }
