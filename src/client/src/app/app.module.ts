@@ -28,6 +28,7 @@ import { PhaseLobbyComponent } from './components/phase-lobby/phase-lobby.compon
 import { PhaseWaitingComponent } from './components/phase-waiting/phase-waiting.component';
 import { PhaseQuestionComponent } from './components/phase-question/phase-question.component';
 import { AuthGuard } from './guards/auth.guard';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 
 
 const config: SocketIoConfig = { url: !environment.production ? 'http://localhost:3501/' : '', options: {} };
@@ -48,6 +49,7 @@ const config: SocketIoConfig = { url: !environment.production ? 'http://localhos
     PhaseLobbyComponent,
     PhaseWaitingComponent,
     PhaseQuestionComponent,
+    LeaderboardComponent,
   ],
   imports: [
     BrowserModule,
