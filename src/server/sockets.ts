@@ -73,7 +73,7 @@ export default io.on("connection", (socket) => {
   
     //Send All Player to Question page
     socket.on('go-to-question', ()=>{
-      io.emit('route','phase-question')
+      socket.broadcast.emit('route','phase-question')
     })
 
   // test: send message to client
