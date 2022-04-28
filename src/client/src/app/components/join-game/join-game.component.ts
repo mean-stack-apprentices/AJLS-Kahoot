@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
+import { Observable } from 'rxjs';
+import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
   selector: 'app-join-game',
@@ -7,22 +8,23 @@ import { Socket } from 'ngx-socket-io';
   styleUrls: ['./join-game.component.scss'],
 })
 export class JoinGameComponent implements OnInit {
-  errMsg: string | null = null;
+  errMsg$!: Observable<string>;
 
-  constructor(private socket: Socket) {}
+  constructor(
+    private socketService: SocketService
+  ) 
+  {}
 
   ngOnInit(): void {}
 
   addPlayer(name: string) {
     if (name) {
-      this.socket.emit('add-name', name);
-      this.socket.on('error-message', (data: string) => {
-        this.errMsg = data;
-        console.log(data);
-      })
-      }
-      else{
-        alert("Please enter a name");
-      }
+      this.socketService.addPlayerName(name);
+
+      this.errMsg$ = this.socketService.getErrorMessage();
+    }
+    else {
+      alert("Please enter a name");
+    }
   }
 }

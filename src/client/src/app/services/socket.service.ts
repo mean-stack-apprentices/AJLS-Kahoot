@@ -15,11 +15,11 @@ export class SocketService {
     private route: Router
   )
   {
-    this.socket.on('connect', () => {})
+    this.socket.on('connect', () => {});
     
     this.socket.on('route',(url:string)=>{
       this.route.navigate([url])
-    })
+    });
 
   }
 
@@ -31,6 +31,10 @@ export class SocketService {
     return this.socket.fromEvent<string>('err-message');
   }
 
+  getErrorMessage() {
+    return this.socket.fromEvent<string>('error-message');
+  }
+
   // set host to true for current socket id
   startQuiz(quiz:Quiz) {
     return this.socket.emit('start quiz',quiz);
@@ -38,6 +42,10 @@ export class SocketService {
 
   isValidPin(pin:string) {
     return this.socket.emit('validate gamepin', pin);
+  }
+
+  addPlayerName(name: string) {
+    return this.socket.emit('add-name',name);
   }
 
 }
