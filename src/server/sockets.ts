@@ -1,4 +1,5 @@
 import {
+  addHost,
   addPlayer,
   cleanGame,
   game,
@@ -39,11 +40,11 @@ export default io.on("connection", (socket) => {
     console.log("Players(after deletion) = ", getPlayers());
   });
 
-  // start quiz (1.reset game 2.select quiz 3.add player as host 4. generate gamepin)
+  // start quiz (1.reset game 2.select quiz 3.add host 4. generate gamepin)
   socket.on("start quiz", (quiz: Quiz) => {
     cleanGame();
     selectQuiz(quiz);
-    addPlayer({ socketId: socket.id, host: true });
+    addHost({socketId: socket.id});
     game.gamePin = generateGamePin();
     socket.join('room host');
     socket.emit("route", "phase-lobby");
@@ -57,7 +58,7 @@ export default io.on("connection", (socket) => {
       socket.emit("error-message", null);
       addPlayer({ socketId: socket.id, playerName: name });
       console.log("Game", game);
-      io.to('room host').emit("player joined", game.players);
+      io.to("room host").emit("player joined", game.players);
       socket.emit("route", "phase-waiting");
       socket.emit("get-player", {
         displayName: `Welcome ${name}, You are in!`,
