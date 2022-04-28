@@ -59,7 +59,7 @@ export default io.on("connection", (socket) => {
       console.log("Game", game);
       io.to('room host').emit("player joined", getPlayersOnly());
       socket.emit("route", "phase-waiting");
-      socket.emit("get-player", {
+      socket.emit("get-join-msg", {
         displayName: `Welcome ${name}, You are in!`,
         waitMsg: "Please Wait For The Game To Start...",});
       

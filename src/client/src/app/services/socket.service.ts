@@ -56,6 +56,10 @@ export class SocketService {
     return this.socket.fromEvent<Player[]>('player joined');  
   }
 
+  getPlayerJoinMsg() {
+    return this.socket.fromEvent('get-join-msg');
+  }
+
   // start quiz and send players to question page
   goToQuestionPage() {
     return this.socket.emit('go-to-question');

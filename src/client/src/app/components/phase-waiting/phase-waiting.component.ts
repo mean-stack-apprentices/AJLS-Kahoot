@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { Observable } from 'rxjs/internal/Observable';
+import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
   selector: 'app-phase-waiting',
@@ -8,10 +9,13 @@ import { Observable } from 'rxjs/internal/Observable';
   styleUrls: ['./phase-waiting.component.scss']
 })
 export class PhaseWaitingComponent implements OnInit {
-  player$:Observable<any>
+  message$:Observable<any>;
 
-  constructor(private socket:Socket) {
-    this.player$ = this.socket.fromEvent('get-player');
+  constructor(
+    private socketservice: SocketService
+  ) 
+  {
+    this.message$ = this.socketservice.getPlayerJoinMsg();
   }
 
   ngOnInit(): void {
