@@ -36,19 +36,25 @@
 // Game model(phases: array, players: array, quiz: Quiz)
 
 
-import type { Game } from "../shared/models/game.model.js";
+import type { Game, Host } from "../shared/models/game.model.js";
 import { Player } from "../shared/models/player.model.js";
 import { Quiz } from "../shared/models/quiz.model.js";
 
 export const game: Game = {
     phases: ['start quiz', 'lobby', 'question', 'leaderboard'],
+    host: null,
     players: [],
     quiz: null,
-    gamePin: null
+    gamePin: null,
 }
 
 export function getPlayers() {
     return game.players;
+}
+
+export function addHost(host: Host) {
+    game.host = host;
+    return game.host;
 }
 
 // step 1: add player
@@ -74,6 +80,7 @@ export function isUniquePlayerName(player_Name: string){
 
 export function cleanGame()
 {
+    game.host = null;
     game.gamePin = null;
     game.players = [];
     game.quiz = null;  
@@ -85,7 +92,7 @@ function findBySocket(socket_id: string) {
 }
 
 function hostExists() {
-    return game.players.find(player => player.host)
+    return game.host;
 }
 
 // generate 6 digit random number
@@ -104,7 +111,6 @@ export function generateGamePin() {
 export function isGamePinValid(pin: string) {
     return game.gamePin === pin
 };
-
 
 export function selectQuiz(quiz:Quiz) {
     game.quiz = quiz;   

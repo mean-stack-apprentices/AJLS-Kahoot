@@ -1,4 +1,4 @@
-<label *ngIf = "msg">
+<label *ngIf = "(msg$ | async) as msg">
     <p class="success-fail-msg failure-msg">{{ msg }}</p>
   </label>
 
