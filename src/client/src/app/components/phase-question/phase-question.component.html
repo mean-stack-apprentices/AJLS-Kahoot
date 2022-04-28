@@ -1,1 +1,20 @@
-<p>phase-question works!</p>
+
+
+<div class="form-div" style="margin-top: 20px;">
+  <label id="qlabel">{{question?.question_title}}</label>
+ <label *ngFor="let Qanswer of question?.answers">
+  <input
+   type="radio"
+   value="{{ Qanswer.option}}"
+   [(ngModel)]="answer"/>
+   {{ Qanswer.option}}
+
+</label>
+<br><br>
+<label>
+<div><h3>Your answer:</h3>{{answer}}</div>
+</label>
+<br>
+<button id="qbtn">SUBMIT ANSWER</button>
+</div>
+

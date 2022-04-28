@@ -5,6 +5,7 @@ import {
   generateGamePin,
   getPlayers,
   getPlayersOnly,
+  getQuestion,
   isGamePinValid,
   isUniquePlayerName,
   removePlayer,
@@ -45,7 +46,7 @@ export default io.on("connection", (socket) => {
     selectQuiz(quiz);
     addPlayer({ socketId: socket.id, host: true });
     game.gamePin = generateGamePin();
-    socket.join('room host');
+    socket.join("room host");
     socket.emit("route", "phase-lobby");
     socket.emit("get-pin", game.gamePin);
     console.log("game = ", game);
@@ -57,25 +58,30 @@ export default io.on("connection", (socket) => {
       socket.emit("error-message", null);
       addPlayer({ socketId: socket.id, playerName: name });
       console.log("Game", game);
-      io.to('room host').emit("player joined", getPlayersOnly());
+      io.to("room host").emit("player joined", getPlayersOnly());
       socket.emit("route", "phase-waiting");
       socket.emit("get-join-msg", {
         displayName: `Welcome ${name}, You are in!`,
-        waitMsg: "Please Wait For The Game To Start...",});
-      
+        waitMsg: "Please Wait For The Game To Start...",
+      });
     } else {
       socket.emit(
         "error-message",
         "Name already taken, please choose another name ;))"
-        );
-      }
-    });
-    
-  
-    //Send All Player to Question page
-    socket.on('go-to-question', ()=>{
-      socket.broadcast.emit('route','phase-question')
-    })
+      );
+    }
+  });
+
+  //Send All Player to Question page
+  socket.on("go-to-question", () => {
+    socket.broadcast.emit("route", "phase-question");
+  });
+
+  //Get Question
+  socket.on("get-question", () => {
+    const question = getQuestion();
+    socket.emit("data-question", question);
+  });
 
   // test: send message to client
   socket.emit("message", "welcome to sockets");
