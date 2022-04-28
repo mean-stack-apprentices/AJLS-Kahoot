@@ -4,6 +4,7 @@ import {
   game,
   generateGamePin,
   getPlayers,
+  getQuestion,
   isGamePinValid,
   isUniquePlayerName,
   removePlayer,
@@ -75,6 +76,14 @@ export default io.on("connection", (socket) => {
     socket.on('go-to-question', ()=>{
       socket.broadcast.emit('route','phase-question')
     })
+
+     //Get Question    
+    socket.on("get-question", ()=>{
+      const question = getQuestion()
+      socket.emit("data-question", question)
+        })
+
+    
 
   // test: send message to client
   socket.emit("message", "welcome to sockets");
