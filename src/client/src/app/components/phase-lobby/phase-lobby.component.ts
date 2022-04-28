@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
 import { Observable } from 'rxjs';
+import { SocketService } from 'src/app/services/socket.service';
+import { Player } from '../../../../../shared/models/player.model';
 
 
 @Component({
@@ -10,23 +11,21 @@ import { Observable } from 'rxjs';
 })
 export class PhaseLobbyComponent implements OnInit {
   gamePin$: Observable<String | null>;
-  players: any = [];
+  players: Player[] = [];
 
-  constructor(private socket:Socket) {
-     this.gamePin$ = this.socket.fromEvent<string>('get-pin')
-
-     this.socket.fromEvent('player joined').subscribe(data => {
-       this.players = data;
-       this.players = this.players.filter((player: { host: any; }) => !player.host)
-     })
+  constructor(
+    private socketService: SocketService
+  ) 
+  {
+     this.gamePin$ = this.socketService.getGamePin();
    }
 
   ngOnInit(): void {
+    this.socketService.getPlayersJoined().subscribe(data => this.players = data);
   }
 
   startGame() {
+    this.socketService.goToQuestionPage();
+  }
 
-        this.socket.emit('go-to-question');
-
-}
 }

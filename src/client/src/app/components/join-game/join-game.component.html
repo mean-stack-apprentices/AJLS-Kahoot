@@ -1,4 +1,4 @@
-<label *ngIf = "errMsg">
+<label *ngIf = "(errMsg$ | async) as errMsg">
     <p class="success-fail-msg failure-msg">{{ errMsg}}</p>
   </label>
 <div class="main-div" id="main">
