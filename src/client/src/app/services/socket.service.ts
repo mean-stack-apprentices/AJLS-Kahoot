@@ -40,12 +40,25 @@ export class SocketService {
     return this.socket.emit('start quiz',quiz);
   }
 
+  getGamePin() {
+    return this.socket.fromEvent<string>('get-pin');
+  }
+
   isValidPin(pin:string) {
     return this.socket.emit('validate gamepin', pin);
   }
 
   addPlayerName(name: string) {
     return this.socket.emit('add-name',name);
+  }
+
+  getPlayersJoined() {
+    return this.socket.fromEvent<Player[]>('player joined');  
+  }
+
+  // start quiz and send players to question page
+  goToQuestionPage() {
+    return this.socket.emit('go-to-question');
   }
 
 }

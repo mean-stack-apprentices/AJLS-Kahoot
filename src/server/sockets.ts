@@ -4,6 +4,7 @@ import {
   game,
   generateGamePin,
   getPlayers,
+  getPlayersOnly,
   isGamePinValid,
   isUniquePlayerName,
   removePlayer,
@@ -56,7 +57,7 @@ export default io.on("connection", (socket) => {
       socket.emit("error-message", null);
       addPlayer({ socketId: socket.id, playerName: name });
       console.log("Game", game);
-      io.to('room host').emit("player joined", game.players);
+      io.to('room host').emit("player joined", getPlayersOnly());
       socket.emit("route", "phase-waiting");
       socket.emit("get-player", {
         displayName: `Welcome ${name}, You are in!`,

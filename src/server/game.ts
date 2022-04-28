@@ -110,6 +110,11 @@ export function selectQuiz(quiz:Quiz) {
     game.quiz = quiz;   
 };
 
+// get all players except host
+export function getPlayersOnly() {
+    return game.players.filter(player => !player.host)
+}
+
 export function getQuestion(){
     return game.quiz?.questions?.find(question =>!question.completed)   
 }
