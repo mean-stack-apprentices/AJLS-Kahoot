@@ -90,10 +90,13 @@ export default io.on("connection", (socket) => {
     console.log("answer = ", answer);
     playerAnswersQues(socket.id, answer);
     if(hasEveryoneAnswered()) {
-      socket.emit("route", "phase-leaderboard");
+      
+      socket.broadcast.emit("route", "phase-leaderboard");
+      socket.on('player-answered', addPlayer);
+
     }
   });
 
-  // test: send message to client
+   // test: send message to client
   socket.emit("message", "welcome to sockets");
 });
