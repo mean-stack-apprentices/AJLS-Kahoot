@@ -18,5 +18,9 @@ export class PhaseQuestionComponent implements OnInit {
     this.socket.on('data-question',(question:Question)=>{ this.question=question;  } )
   }
 
+  submitAnswer(){
+    this.socket.emit('send-answer',this.answer);
+  }
+
   
 }
