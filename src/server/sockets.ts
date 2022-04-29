@@ -6,8 +6,10 @@ import {
   generateGamePin,
   getPlayers,
   getQuestion,
+  hasEveryoneAnswered,
   isGamePinValid,
   isUniquePlayerName,
+  playerAnswersQues,
   removePlayer,
   selectQuiz,
 } from "./game.js";
@@ -81,6 +83,15 @@ export default io.on("connection", (socket) => {
   socket.on("get-question", () => {
     const question = getQuestion();
     socket.emit("data-question", question);
+  });
+
+  //send answer
+  socket.on("send-answer", (answer) => {
+    console.log("answer = ", answer);
+    playerAnswersQues(socket.id, answer);
+    if(hasEveryoneAnswered()) {
+      socket.emit("route", "phase-leaderboard");
+    }
   });
 
   // test: send message to client

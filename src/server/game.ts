@@ -124,7 +124,7 @@ function getCorrectAnswer() {
     return getQuestion()?.answers.find(answer => answer.correct);
 }
 
-function hasEveryoneAnswered() {
+export function hasEveryoneAnswered() {
     return game.players.every(player => player.answer);
 }
 
@@ -133,6 +133,7 @@ export function playerAnswersQues(socketId: string, ans: string) {
     // if player exists, save answer given by player
     if(player) {
         player.answer = ans;
+        console.log('players (after answered:)', game.players);
         // if all players answered, check if correct and give points
         if(hasEveryoneAnswered()) {
             game.players.forEach(player => {
@@ -147,6 +148,8 @@ export function playerAnswersQues(socketId: string, ans: string) {
                 //make answer null after points given
                 player.answer = null;
         });
+        console.log('players (after points given:)', game);
+
         // change question's completed value to true
         const question = getQuestion();
         if(question) {
