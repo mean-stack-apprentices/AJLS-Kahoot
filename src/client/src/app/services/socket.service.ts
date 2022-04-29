@@ -65,4 +65,8 @@ export class SocketService {
     return this.socket.emit('go-to-question');
   }
 
+  getPlayersAnswered() {
+    return this.socket.fromEvent<Player[]>('player-answered'); 
+  }
+
 }

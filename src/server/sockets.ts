@@ -6,8 +6,10 @@ import {
   generateGamePin,
   getPlayers,
   getQuestion,
+  hasEveryoneAnswered,
   isGamePinValid,
   isUniquePlayerName,
+  playerAnswersQues,
   removePlayer,
   selectQuiz,
 } from "./game.js";
@@ -83,6 +85,18 @@ export default io.on("connection", (socket) => {
     socket.emit("data-question", question);
   });
 
-  // test: send message to client
+  //send answer
+  socket.on("send-answer", (answer) => {
+    console.log("answer = ", answer);
+    playerAnswersQues(socket.id, answer);
+    if(hasEveryoneAnswered()) {
+      
+      socket.broadcast.emit("route", "phase-leaderboard");
+      socket.on('player-answered', addPlayer);
+
+    }
+  });
+
+   // test: send message to client
   socket.emit("message", "welcome to sockets");
 });
