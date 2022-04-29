@@ -13,6 +13,7 @@ import { PhaseLobbyComponent } from './components/phase-lobby/phase-lobby.compon
 import { PhaseWaitingComponent } from './components/phase-waiting/phase-waiting.component';
 import { PhaseQuestionComponent } from './components/phase-question/phase-question.component';
 import { AuthGuard } from './guards/auth.guard';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -35,7 +36,8 @@ const routes: Routes = [
   { path: 'phase-lobby', component: PhaseLobbyComponent },
   { path: 'Join-game', component: JoinGameComponent },
   { path: 'phase-waiting', component: PhaseWaitingComponent },
-  {path: 'phase-question', component:PhaseQuestionComponent}
+  {path: 'phase-question', component:PhaseQuestionComponent},
+  {path:'phase-leaderboard', component:LeaderboardComponent},
 ];
 
 @NgModule({
