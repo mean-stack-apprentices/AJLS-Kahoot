@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Socket } from 'ngx-socket-io';
 import { Player } from '../../../../shared/models/player.model';
+import { Question } from '../../../../shared/models/question.model';
 import { Quiz } from '../../../../shared/models/quiz.model';
 
 
@@ -65,8 +66,35 @@ export class SocketService {
     return this.socket.emit('go-to-question');
   }
 
-  getPlayersAnswered() {
-    return this.socket.fromEvent<Player[]>('player-answered'); 
+  // request for question
+  requestQuestion() {
+    return this.socket.emit('request-question');
+  }
+
+  // get one question
+  getQuestion() {
+    return this.socket.fromEvent<Question>('data-question');
+  }
+
+  // send player answer choice
+  sendAnswer(answer: String) {
+    return this.socket.emit('send-answer',answer);
+  }
+
+  checkIfHost() {
+    return this.socket.emit('check-if-host');
+  }
+
+  isHost() {
+    return this.socket.fromEvent<boolean>('is-host');
+  }
+
+  requestScores() {
+    return this.socket.emit('request-players-scores');
+  }
+
+  getScores() {
+    return this.socket.fromEvent<Player[]>('all-players-scores');
   }
 
 }
