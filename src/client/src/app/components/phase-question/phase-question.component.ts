@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { SocketService } from 'src/app/services/socket.service';
 import { Question } from '../../../../../shared/models/question.model';
 
 @Component({
@@ -8,19 +9,25 @@ import { Question } from '../../../../../shared/models/question.model';
   styleUrls: ['./phase-question.component.scss']
 })
 export class PhaseQuestionComponent implements OnInit {
-  question:null | Question = null;
-   public answer= ''
-  constructor(private socket:Socket) { }
+  question$! : Observable<Question>;
+  answer : String | null = null;
+
+  constructor(
+    private socketService: SocketService
+  ) 
+  { }
 
   ngOnInit(): void {
-
-    this.socket.emit('get-question')
-    this.socket.on('data-question',(question:Question)=>{ this.question=question;  } )
+    this.socketService.requestQuestion();
+    this.question$ = this.socketService.getQuestion();
   }
 
   submitAnswer(){
-    this.socket.emit('send-answer',this.answer);
-  }
-
-  
+    if(this.answer) {
+      this.socketService.sendAnswer(this.answer);
+    }
+    else{
+      alert("Please choose your answer.");
+    }
+  } 
 }
