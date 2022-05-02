@@ -8,6 +8,7 @@ import {
   getQuestion,
   hasEveryoneAnswered,
   isGamePinValid,
+  isHost,
   isUniquePlayerName,
   playerAnswersQues,
   removePlayer,
@@ -80,22 +81,34 @@ export default io.on("connection", (socket) => {
   });
 
   //Get Question
-  socket.on("get-question", () => {
+  socket.on("request-question", () => {
     const question = getQuestion();
     socket.emit("data-question", question);
   });
 
-  //send answer
+  //send answer, check, give points, send to scoreboard page
   socket.on("send-answer", (answer) => {
     console.log("answer = ", answer);
-    playerAnswersQues(socket.id, answer);
-    if(hasEveryoneAnswered()) {
-      
-      socket.broadcast.emit("route", "phase-leaderboard");
-      socket.on('player-answered', addPlayer);
-
+    if(answer) {
+      const allAnswered = playerAnswersQues(socket.id, answer);
+      if(allAnswered) {
+        io.emit("route", "phase-leaderboard");
+      }
     }
   });
+
+  // get players scores when requested
+  socket.on("request-players-scores", () => {
+    const allPlayers = getPlayers();
+    socket.emit("all-players-scores",allPlayers);
+  });
+
+  // check if it is host
+  socket.on('check-if-host', () => {
+    const is_host = isHost(socket.id);
+    console.log("is host? ", is_host);
+    socket.emit('is-host',is_host);
+  })
 
    // test: send message to client
   socket.emit("message", "welcome to sockets");
