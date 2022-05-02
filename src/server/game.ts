@@ -95,6 +95,10 @@ function hostExists() {
     return game.host;
 }
 
+export function isHost(socket_id: string) {
+    return game.host?.socketId === socket_id;
+}
+
 // generate 6 digit random number
 export function generateGamePin() {
     let randomStr = '';

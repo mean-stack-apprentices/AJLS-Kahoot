@@ -1,8 +1,10 @@
-<p>leaderboard works!</p>
-<ul>
-    <h1>Player Name  && Points</h1>
-     <li *ngFor="let p of players">
+<div [ngStyle]="{'display' : isHost? 'block' : 'none'}">
+   <button>Next</button>
+</div>
+<label id="text-big" class="text-score">Scoreboard</label>
+   <div *ngFor="let player of players; let i=index;" id="label-div">
+      <label style="font-size: 30px;">
+         {{i+1}}. {{player.playerName}} : {{player.points}}
+      </label>
+   </div>
   
-        <h2>{{p.playerName}}  {{p.points}}</h2>
-     </li>
-  </ul>

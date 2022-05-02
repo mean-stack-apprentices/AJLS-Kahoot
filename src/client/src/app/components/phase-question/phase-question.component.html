@@ -1,20 +1,19 @@
-
-
-<div class="form-div" style="margin-top: 20px;">
-  <label id="qlabel">{{question?.question_title}}</label>
- <label *ngFor="let Qanswer of question?.answers">
-  <input
-   type="radio"
-   value="{{ Qanswer.option}}"
-   [(ngModel)]="answer"/>
-   {{ Qanswer.option}}
-
-</label>
-<br><br>
-<label>
-<div><h3>Your answer:</h3>{{answer}}</div>
-</label>
-<br>
-<button id="qbtn" (click)="submitAnswer()">SUBMIT ANSWER</button>
+<div *ngIf="(question$ | async) as question" class="form-div" style="margin-top: 20px">
+  <label id="qlabel">
+    {{ question?.question_title }}
+  </label>
+  <div *ngFor="let Qanswer of question?.answers; let i=index;" class="radio-button-div">
+    <label class="radio" id="op{{i+1}}">
+      <input type="radio" value="{{ Qanswer.option }}" [(ngModel)]="answer"/>
+      {{ Qanswer.option }}
+    </label>
+  </div>
+  <label>
+    <div>
+      <h3>Your answer:</h3>
+      <span style="color: green; font-size: 25px">{{ answer }}</span>
+    </div>
+  </label>
+  <br />
+  <button (click)="submitAnswer()">SUBMIT ANSWER</button>
 </div>
-
