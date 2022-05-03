@@ -13,6 +13,7 @@ import { Question } from '../../../../../shared/models/question.model';
 export class PhaseQuestionComponent implements OnInit {
   data$! : Observable<any>;
   answer : String | null = null;
+  submitted: boolean = false;
 
   constructor(
     private socketService: SocketService
@@ -29,6 +30,7 @@ export class PhaseQuestionComponent implements OnInit {
   submitAnswer(){
     if(this.answer) {
       this.socketService.sendAnswer(this.answer);
+      this.submitted = true;
     }
     else{
       alert("Please choose your answer.");
