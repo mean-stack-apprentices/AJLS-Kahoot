@@ -38,6 +38,7 @@
 
 import type { Game, Host } from "../shared/models/game.model.js";
 import { Player } from "../shared/models/player.model.js";
+import { Question } from "../shared/models/question.model.js";
 import { Quiz } from "../shared/models/quiz.model.js";
 
 export const game: Game = {
@@ -120,6 +121,16 @@ export function selectQuiz(quiz:Quiz) {
     game.quiz = quiz;   
 };
 
+export function getQuestionLength(){
+  let questionNumber= game.quiz?.questions?.findIndex(question =>!question.completed)
+  if(questionNumber!= -1){
+      questionNumber! +=1
+    }
+  const totalLength = game.quiz?.questions?.length
+  return  {questionNumber ,totalLength}
+  
+}
+
 export function getQuestion(){
     return game.quiz?.questions?.find(question =>!question.completed)   
 }
@@ -131,6 +142,7 @@ function getCorrectAnswer() {
 export function hasEveryoneAnswered() {
     return game.players.every(player => player.answer);
 }
+
 
 export function playerAnswersQues(socketId: string, ans: string) {
     const player = findBySocket(socketId);
