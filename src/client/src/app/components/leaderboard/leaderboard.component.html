@@ -1,10 +1,10 @@
-<div [ngStyle]="{'display' : isHost? 'block' : 'none'}">
-   <button>Next</button>
-</div>
+
 <label id="text-big" class="text-score">Scoreboard</label>
    <div *ngFor="let player of players; let i=index;" id="label-div">
       <label style="font-size: 30px;">
          {{i+1}}. {{player.playerName}} : {{player.points}}
       </label>
    </div>
-  
+   <div [ngStyle]="{'display' : isHost? 'block' : 'none'} " >
+    <button (click)="nextQuestion()" id="start-btn">Next</button>
+ </div>
