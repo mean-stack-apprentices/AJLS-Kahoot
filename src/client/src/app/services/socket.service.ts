@@ -17,8 +17,9 @@ export class SocketService {
   )
   {
     this.socket.on('connect', () => {});
-    
+
     this.socket.on('route',(url:string)=>{
+      console.log("Routing",route)
       this.route.navigate([url])
     });
 
@@ -54,7 +55,7 @@ export class SocketService {
   }
 
   getPlayersJoined() {
-    return this.socket.fromEvent<Player[]>('player joined');  
+    return this.socket.fromEvent<Player[]>('player joined');
   }
 
   getPlayerJoinMsg() {
@@ -73,7 +74,7 @@ export class SocketService {
 
   // get one question
   getQuestion() {
-    return this.socket.fromEvent<Question>('data-question');
+    return this.socket.fromEvent<any>('data-question');
   }
 
   // send player answer choice
@@ -95,6 +96,11 @@ export class SocketService {
 
   getScores() {
     return this.socket.fromEvent<Player[]>('all-players-scores');
+  }
+
+  requestNextQuestion() {
+
+    return this.socket.emit('next-question');
   }
 
 }
