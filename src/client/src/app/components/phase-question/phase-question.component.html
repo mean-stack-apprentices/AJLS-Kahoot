@@ -1,4 +1,9 @@
-<div *ngIf="(question$ | async) as question" class="form-div" style="margin-top: 20px">
+<div *ngIf="data$ |async as data ">
+  <div *ngIf="data.questionProperties.questionNumber == -1">
+    <p class="success-fail-msg failure-msg">No More Questions.</p>
+  </div>
+  <label>{{data.questionProperties.questionNumber}} Of {{data.questionProperties.totalLength}}</label>
+<div *ngIf="(data.question) as question" class="form-div" style="margin-top: 20px">
   <label id="qlabel">
     {{ question?.question_title }}
   </label>
@@ -16,4 +21,6 @@
   </label>
   <br />
   <button (click)="submitAnswer()">SUBMIT ANSWER</button>
+</div>
+
 </div>
