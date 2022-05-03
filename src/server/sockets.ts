@@ -6,6 +6,7 @@ import {
   generateGamePin,
   getPlayers,
   getQuestion,
+  getQuestionLength,
   hasEveryoneAnswered,
   isGamePinValid,
   isHost,
@@ -83,7 +84,9 @@ export default io.on("connection", (socket) => {
   //Get Question
   socket.on("request-question", () => {
     const question = getQuestion();
-    socket.emit("data-question", question);
+    const questionProperties = getQuestionLength()
+    socket.emit("data-question", {question,questionProperties});
+
   });
 
   //send answer, check, give points, send to scoreboard page
@@ -100,7 +103,7 @@ export default io.on("connection", (socket) => {
   // get players scores when requested
   socket.on("request-players-scores", () => {
     const allPlayers = getPlayers();
-    socket.emit("all-players-scores",allPlayers);
+    io.emit("all-players-scores",allPlayers);
   });
 
   // check if it is host
@@ -109,6 +112,14 @@ export default io.on("connection", (socket) => {
     console.log("is host? ", is_host);
     socket.emit('is-host',is_host);
   })
+
+  // Ask for Next Question 
+socket.on('next-question', ()=>{  
+	socket.broadcast.emit('route','phase-question')
+})
+
+//Find Length of Question
+
 
    // test: send message to client
   socket.emit("message", "welcome to sockets");
