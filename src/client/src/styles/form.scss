@@ -4,7 +4,7 @@
     padding: 3% 0 0;
     margin: auto;
   }
-  
+
   .form-div {
     position: relative;
     z-index: 1;
@@ -16,7 +16,9 @@
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     border-radius: 5px;
   }
-  
+
+ 
+
   .form-div input {
     font-family: "Roboto", sans-serif;
     outline: 0;
@@ -29,7 +31,7 @@
     box-sizing: border-box;
     font-size: 14px;
   }
-  
+
   .form-button, .form-div button {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
@@ -45,23 +47,23 @@
     transition: all 0.3 ease;
     cursor: pointer;
   }
-  
+
   .form-button:hover, .form-div button:hover,
   .form-button:active, .form-div button:active,
   .form-button:focus, .form-div button:focus {
     background: rgb(1, 120, 199);;
   }
-  
+
   .form-button:disabled, .form-div button:disabled {
       background: rgb(171, 206, 230);
       cursor: default;
     }
-    
+
   .form-div .message {
     margin: 15px 0 0;
     font-size: 20px;
   }
-  
+
   .form-div .message a {
     color: rgb(0, 153, 255);
     text-decoration: none;
@@ -89,5 +91,4 @@
     color: red;
     background-color: rgb(247, 208, 208);
 }
-  
-  
+

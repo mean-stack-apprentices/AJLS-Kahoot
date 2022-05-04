@@ -88,7 +88,7 @@ export function cleanGame()
 }
 
 // find player by socket id
-function findBySocket(socket_id: string) {
+export function findBySocket(socket_id: string) {
     return game.players.find(player => player.socketId === socket_id);
 }
 
