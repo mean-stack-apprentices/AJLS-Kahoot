@@ -1,4 +1,4 @@
-// AJLS-kahoot 
+// AJLS-kahoot
 // extra steps: help page for kahoot(steps to start game)
 // 1. login person can select a quiz and start game and becomes host, and goes to lobby page(join-game component)
 // 1. a. check if game started, then only accept the username in lobby, else show message, "game has not started"
@@ -35,143 +35,140 @@
 // Player model(playerName: string, host: boolean, socketId: string, point: number, done: boolean, answer: string)
 // Game model(phases: array, players: array, quiz: Quiz)
 
-
 import type { Game, Host } from "../shared/models/game.model.js";
 import { Player } from "../shared/models/player.model.js";
-import { Question } from "../shared/models/question.model.js";
 import { Quiz } from "../shared/models/quiz.model.js";
 
 export const game: Game = {
-    phases: ['start quiz', 'lobby', 'question', 'leaderboard'],
-    host: null,
-    players: [],
-    quiz: null,
-    gamePin: null,
-}
+	phases: ["start quiz", "lobby", "question", "leaderboard"],
+	host: null,
+	players: [],
+	quiz: null,
+	gamePin: null,
+};
 
 export function getPlayers() {
-    return game.players;
+	return game.players;
 }
 
 export function addHost(host: Host) {
-    game.host = host;
-    return game.host;
+	game.host = host;
+	return game.host;
 }
 
 // step 1: add player
 export function addPlayer(player: Player) {
-    if(!findBySocket(player.socketId)) {
-        return game.players.push(player);
-    }
-    console.log("can not add! player already exists!");
-    return false;
+	if (!findBySocket(player.socketId)) {
+		return game.players.push(player);
+	}
+	console.log("can not add! player already exists!");
+	return false;
 }
 
 // remove socket id from players array
 export function removePlayer(socket_id: string) {
-    game.players = game.players.filter(player => player.socketId !== socket_id);
-    return game.players;
+	game.players = game.players.filter((player) => player.socketId !== socket_id);
+	return game.players;
 }
 
 // check if playername is unique
-export function isUniquePlayerName(player_Name: string){
-    player_Name= player_Name.toLowerCase();
-    return !game.players.find( player => player.playerName?.toLowerCase() === player_Name);
+export function isUniquePlayerName(player_Name: string) {
+	player_Name = player_Name.toLowerCase();
+	return !game.players.find(
+		(player) => player.playerName?.toLowerCase() === player_Name
+	);
 }
 
-export function cleanGame()
-{
-    game.host = null;
-    game.gamePin = null;
-    game.players = [];
-    game.quiz = null;  
+export function cleanGame() {
+	game.host = null;
+	game.gamePin = null;
+	game.players = [];
+	game.quiz = null;
 }
 
 // find player by socket id
 export function findBySocket(socket_id: string) {
-    return game.players.find(player => player.socketId === socket_id);
+	return game.players.find((player) => player.socketId === socket_id);
 }
 
 function hostExists() {
-    return game.host;
+	return game.host;
 }
 
 export function isHost(socket_id: string) {
-    return game.host?.socketId === socket_id;
+	return game.host?.socketId === socket_id;
 }
 
 // generate 6 digit random number
 export function generateGamePin() {
-    let randomStr = '';
-    for(let i = 0; i<6; i++)   
-    {
-        let randomNum;
-        // generate random number between 0 and 9
-        randomNum = Math.floor(Math.random() * 9) 
-        randomStr += randomNum;
-    }
-    return randomStr;
-};
-
-export function isGamePinValid(pin: string) {
-    return game.gamePin === pin
-};
-
-export function selectQuiz(quiz:Quiz) {
-    game.quiz = quiz;   
-};
-
-export function getQuestionLength(){
-  let questionNumber= game.quiz?.questions?.findIndex(question =>!question.completed)
-  if(questionNumber!= -1){
-      questionNumber! +=1
-    }
-  const totalLength = game.quiz?.questions?.length
-  return  {questionNumber ,totalLength}
-  
+	let randomStr = "";
+	for (let i = 0; i < 6; i++) {
+		let randomNum;
+		// generate random number between 0 and 9
+		randomNum = Math.floor(Math.random() * 9);
+		randomStr += randomNum;
+	}
+	return randomStr;
 }
 
-export function getQuestion(){
-    return game.quiz?.questions?.find(question =>!question.completed)   
+export function isGamePinValid(pin: string) {
+	return game.gamePin === pin;
+}
+
+export function selectQuiz(quiz: Quiz) {
+	game.quiz = quiz;
+}
+
+export function getQuestionLength() {
+	let questionNumber = game.quiz?.questions?.findIndex(
+		(question) => !question.completed
+	);
+	if (questionNumber != -1) {
+		questionNumber! += 1;
+	}
+	const totalLength = game.quiz?.questions?.length;
+	return { questionNumber, totalLength };
+}
+
+export function getQuestion() {
+	return game.quiz?.questions?.find((question) => !question.completed);
 }
 
 function getCorrectAnswer() {
-    return getQuestion()?.answers.find(answer => answer.correct);
+	return getQuestion()?.answers.find((answer) => answer.correct);
 }
 
 export function hasEveryoneAnswered() {
-    return game.players.every(player => player.answer);
+	return game.players.every((player) => player.answer);
 }
 
-
 export function playerAnswersQues(socketId: string, ans: string) {
-    const player = findBySocket(socketId);
-    // if player exists, save answer given by player
-    if(player) {
-        player.answer = ans;
-        console.log('players (after answered:)', game.players);
-        // if all players answered, check if correct and give points
-        if(hasEveryoneAnswered()) {
-            game.players.forEach(player => {
-                if(!player.points)
-                    player.points = 0;
+	const player = findBySocket(socketId);
+	// if player exists, save answer given by player
+	if (player) {
+		player.answer = ans;
+		console.log("players (after answered:)", game.players);
+		// if all players answered, check if correct and give points
+		if (hasEveryoneAnswered()) {
+			game.players.forEach((player) => {
+				if (!player.points) player.points = 0;
 
-                const correct = player.answer == getCorrectAnswer()?.option;
+				const correct = player.answer == getCorrectAnswer()?.option;
 
-                if(correct) {
-                        player.points += 5;
-                }
-                //make answer null after points given
-                player.answer = null;
-        });
-        console.log('players (after points given:)', game);
+				if (correct) {
+					player.points += 5;
+				}
+				//make answer null after points given
+				player.answer = null;
+			});
+			console.log("players (after points given:)", game);
 
-        // change question's completed value to true
-        const question = getQuestion();
-        if(question) {
-            question.completed = true;
-        }
-        return true;
-        }
-    }
+			// change question's completed value to true
+			const question = getQuestion();
+			if (question) {
+				question.completed = true;
+			}
+			return true;
+		}
+	}
 }
