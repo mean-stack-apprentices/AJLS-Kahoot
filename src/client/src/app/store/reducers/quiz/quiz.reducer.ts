@@ -5,6 +5,7 @@ import {
   createQuizTitleSuccess,
   selectQuizSuccess,
   loadQuizzesSuccess,
+  deleteQuizSuccess,
   } from '../../actions/quiz/quiz.actions';
 
 export const quizFeatureKey = 'quiz';
@@ -12,11 +13,13 @@ export const quizFeatureKey = 'quiz';
 export interface State {
   quizs: Quiz[];
   selectedQuiz: Quiz | null;
+  quiz: Quiz | null;
   }
 
 export const initialState: State = {
   quizs: [],
   selectedQuiz: null,
+  quiz: null,
   };
 
 export const reducer = createReducer(
@@ -43,5 +46,9 @@ export const reducer = createReducer(
 
   on(selectQuizSuccess,(state,action)=>{
     return {...state, selectedQuiz:action.data}
-  })
+  }),
+
+  on(deleteQuizSuccess, (state, action) => {
+    return {...state, quiz: action.data}
+  }),
 );

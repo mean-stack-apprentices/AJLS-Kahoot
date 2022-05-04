@@ -66,4 +66,22 @@ export const createQuizTitle = createAction(
     props<{  error: Error }>()
   );
 
+  export const deleteQuiz = createAction(
+    '[Quiz] Delete Quiz',
+    props<{ data: Quiz }>()
+  );
+
+  export const deleteQuizSuccess = createAction(
+    '[Quiz] Delete Quiz Success',
+    props<{ data: Quiz }>()
+  );
+
+  export const deleteQuizFailure = createAction(
+    '[Quiz] Delete Quiz Failure',
+    props<{  error: Error }>()
+  );
+  
+  export const navigateOnDeleteQuiz = createAction(
+    '[Quiz] Navigate On Delete Quiz',
+   );
   
