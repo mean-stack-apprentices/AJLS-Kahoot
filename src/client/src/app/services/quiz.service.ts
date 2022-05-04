@@ -11,6 +11,7 @@ import { ApiService } from './api.service';
 })
 export class QuizService {
   routeString = 'quizzes/';
+  selectedQuizId = '';
 
   constructor(
     private api:ApiService,
@@ -37,6 +38,20 @@ export class QuizService {
   createQuestion(question: Question, quizId: String | null) {
     console.log("services", question,quizId);
     return this.api.post<{data: Quiz},Question>(`${this.routeString}create-quiz-question/`+quizId, question);
+  }
+
+  selectQuiz(id: string) {
+    this.selectedQuizId = id;
+  }
+
+  deleteQuiz(quiz: Quiz) {
+    return this.api
+    .delete<{data: Quiz}>(`${this.routeString}delete-quiz/`+quiz._id)
+    .pipe(map((res)=>res.data))
+  }
+
+  navigateOnDeleteQuiz() {
+    return of(this.router.navigate(['quiz-list']));
   }
 
 }
