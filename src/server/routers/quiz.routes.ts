@@ -24,7 +24,6 @@ quizRouter.post("/create-quiz-title", function (req, res) {
 
 quizRouter.get("/quiz/:id", async function (req: any, res) {
   await QuizModel.findById(req.params.id)
-
     .populate("questions")
     .lean()
     .then((data) => {
