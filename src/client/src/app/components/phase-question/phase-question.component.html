@@ -11,13 +11,16 @@
     <div *ngIf="data.questionProperties.questionNumber == -1">
       <p class="success-fail-msg failure-msg">No More Questions.</p>
     </div>
-    <label id="text-big">
+    <div>
+      <p style="float:left;" id="text">
       Question {{ data.questionProperties.questionNumber }} Of
-      {{ data.questionProperties.totalLength }}
-    </label>
+      {{ data.questionProperties.totalLength }}</p>
+       <p style="float:right;" id="text">{{data.name}}</p>
+    </div>
+
     <div
       *ngIf="data.question as question"
-      class="form-div"
+      class="form-div" id="quesForm"
       style="margin-top: 20px"
     >
       <label id="qlabel">
@@ -37,7 +40,7 @@
         </label>
       </div>
       <div>
-        <h3>Your answer:</h3>
+        <h3>{{data.name}}'s Answer:</h3>
         <span style="color: green; font-size: 25px">{{ answer }}</span>
       </div>
       <br />
@@ -45,3 +48,4 @@
     </div>
   </div>
 </div>
+

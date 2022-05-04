@@ -2,6 +2,7 @@ import {
   addHost,
   addPlayer,
   cleanGame,
+  findBySocket,
   game,
   generateGamePin,
   getPlayers,
@@ -79,15 +80,18 @@ export default io.on("connection", (socket) => {
   //Send All Player to Question page
   socket.on("go-to-question", () => {
     socket.broadcast.emit("route", "phase-question");
+
   });
 
   //Get Question
   socket.on("request-question", () => {
     const question = getQuestion();
     const questionProperties = getQuestionLength()
-    socket.emit("data-question", {question,questionProperties});
+    const player=findBySocket(socket.id)
+    const name =player?.playerName
+    socket.emit("data-question", {question,questionProperties,name});
 
-  });
+  })
 
   //send answer, check, give points, send to scoreboard page
   socket.on("send-answer", (answer) => {
@@ -118,7 +122,7 @@ socket.on('next-question', ()=>{
 	socket.broadcast.emit('route','phase-question')
 })
 
-//Find Length of Question
+
 
 
    // test: send message to client
