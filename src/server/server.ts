@@ -11,7 +11,7 @@ import io from './sockets.js';
 dotenv.config();
 
 const __dirname = path.resolve();
-const PORT = 3501;
+const PORT = process.env.PORT || 3501;
 
 mongoose.connect(`${process.env.MONGO_URI}`)
 .then(() => {
