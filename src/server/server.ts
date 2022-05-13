@@ -6,12 +6,12 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { apiRouter } from './routers/api.routes.js';
 import { app, server } from './serverConfig.js';
-import io from './sockets.js';
 
 dotenv.config();
 
 const __dirname = path.resolve();
 const PORT = process.env.PORT || 3501;
+const clientPath = path.join(__dirname, '/dist/client');
 
 mongoose.connect(`${process.env.MONGO_URI}`)
 .then(() => {
@@ -27,11 +27,13 @@ app.use(cors(
     },
 ));
 app.use(express.json());
+app.use(express.static(clientPath));
+
 app.use('/api', apiRouter);
+
 app.get('/', function(req, res) {
    res.json({message:'test'});
 });
-
 
 server.listen(PORT, function() {
     console.log( `listening to localhost http://localhost:${PORT}`);
