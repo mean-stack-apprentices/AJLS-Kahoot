@@ -1,0 +1,29 @@
+<ul>
+  <li id="left-li">
+    <a id="title-link" routerLink="/" routerLinkActive="active-list">Kahoot!</a>
+  </li>
+  <li id="left-li">
+    <a routerLink="/game-pin" routerLinkActive="active-list">Play</a>
+  </li>
+
+  <li id="left-li">
+    <a *ngIf = "(loggedInUser$ | async)" routerLink="/quiz-list" routerLinkActive="active-list">Quiz List</a>
+  </li>
+  <li id="left-li">
+    <a *ngIf = "(loggedInUser$ | async)" routerLink="/create-quiz-title" routerLinkActive="active-list">Create Quiz</a>
+  </li>
+  <li>
+    <a *ngIf = "!(loggedInUser$ | async)" routerLink="/signup" routerLinkActive="active-list">Sign up</a>
+  </li>
+  <li>
+    <a *ngIf = "!(loggedInUser$ | async)" routerLink="/login" routerLinkActive="active-list">Log In</a>
+  </li>
+  <li>
+    <a *ngIf = "(loggedInUser$ | async)" (click)="logout()" routerLinkActive="active-list">Log out</a>
+  </li>
+  <li *ngIf = "(loggedInUser$ | async) as user">
+    <label class="user-link">Hello, {{user.username}}</label>
+  </li>
+</ul>
+
+<router-outlet></router-outlet>

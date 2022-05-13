@@ -1,0 +1,89 @@
+.heading-div {
+    text-align: center;
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 50px;
+    color: rgb(18, 81, 122);
+}
+
+.title-div {
+    text-align: center;
+    color: rgb(59, 118, 220);
+    margin: 30px 0 50px;
+}
+
+.container-div {
+   margin: 0;
+   padding: 0;
+   display: flex;
+   font-size: 18px;
+}
+
+.left-div {
+    margin: 0;
+    padding-left: 70px;
+    width: 40%;
+}
+
+.right-div {
+    margin: 0;
+    padding-right: 40px;
+}
+
+.right-div-title {
+    margin-bottom: 40px;
+}
+
+.ques-div {
+    background-color: hsl(0, 0%, 94%);
+    padding: 2px 10px;
+    margin: 6px 0;
+    border-radius: 5px;
+}
+
+#main {
+    background-color: #61A4BC;
+    height: 800px;
+ }
+
+ #form {
+     position: absolute;
+     top: 45%;
+     width: 400px;
+ }
+
+ .title {
+     margin: 5px;
+     color: #B590CA;
+     font-size: 50px;
+     font-family: Impact, fantasy;
+ }
+
+#start-div{
+  text-align: right;
+  margin-right: 10%;
+}
+
+#label-div{
+    font-size: 70px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#player-div{
+  width:600px;
+  margin:0 auto;
+  margin-top: 150px;
+  font-size: 40px;
+  color: green;
+  font-family: Impact, fantasy;
+}
+
+#players-div {
+    margin: 20px;
+    align-items: center;
+    font-size: 20px;
+}
+#qlabel{
+  font-size: 40px;
+}

@@ -1,0 +1,11 @@
+<body>
+  <article class="gallery">
+    <div *ngFor="let quiz of quizzes$ | async; let i=index;" (click)="goToDetails(quiz)" class="quiz-parent-div"  id="left-li">
+      <img src="../../../assets/images/image{{getIndex(i)}}.jpeg" alt="quiz name">
+      <div class="bottom-right-child-div">{{quesCount(quiz)}} questions</div>
+      <div class="quiz-text-child-div">
+        {{ quiz.title }}
+      </div>
+    </div>
+  </article>
+</body>
