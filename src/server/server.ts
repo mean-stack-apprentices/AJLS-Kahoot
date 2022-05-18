@@ -32,7 +32,7 @@ app.use(express.static(clientPath));
 app.use('/api', apiRouter);
 
 app.get('/', function(req, res) {
-   res.json({message:'test'});
+   res.sendFile('../');
 });
 
 server.listen(PORT, function() {
