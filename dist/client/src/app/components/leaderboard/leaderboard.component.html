@@ -1,9 +1,0 @@
-<label id="text-big" class="text-score">Scoreboard</label>
-<div [ngStyle]="{ display: isHost ? 'block' : 'none' }" id="start-div">
-  <button (click)="nextQuestion()" id="start-btn">Next Question</button>
-</div>
-<div *ngFor="let player of players; let i = index" id="label-div">
-  <label style="font-size: 30px">
-    {{ i + 1 }}. {{ player.playerName }} : {{ player.points }}
-  </label>
-</div>
