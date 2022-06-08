@@ -1,0 +1,25 @@
+
+<div>
+  <div *ngIf="gamePin$ |async  as pin" id="label-div">
+    <label>
+      <span id="text-big">Game Pin:</span>
+      {{pin}}</label>
+  </div>
+  <hr>
+
+  <div id="start-div" >
+      <button id="start-btn"(click)="startGame()" [disabled]="!players.length">Start</button>
+  </div>
+
+  <div *ngIf="!(players.length)" id="label-div">
+    <label style="color: purple; font-size: 35px;">
+      Waiting for players to join.....
+    </label>
+  </div>
+  <div *ngFor ="let player of players; let i=index;" id="label-div">
+    <label style="font-size: 30px;">
+      {{i+1}}. {{player.playerName}}
+    </label>
+  </div>
+</div>
+

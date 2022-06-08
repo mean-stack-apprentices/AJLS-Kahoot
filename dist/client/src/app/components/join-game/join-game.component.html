@@ -1,0 +1,12 @@
+<label *ngIf = "(errMsg$ | async) as errMsg">
+    <p class="success-fail-msg failure-msg">{{ errMsg}}</p>
+  </label>
+<div class="main-div" id="main">
+    <div class="sub-main-div" id="sub">
+        <div class="form-div" id="form">
+            <h2 class="title">Kahoot!</h2>
+                <input type="text" placeholder="Enter Desired Username"#name/>
+                <button (click)= "addPlayer(name.value)" type="submit" class="submit-button" id="btn" > Join Game! </button>
+        </div>
+    </div>
+</div>
