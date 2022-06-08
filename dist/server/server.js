@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { apiRouter } from './routers/api.routes.js';
 import { app, server } from './serverConfig.js';
+import './sockets.js';
 dotenv.config();
 const __dirname = path.resolve();
 const PORT = process.env.PORT || 3501;
@@ -23,7 +24,7 @@ app.use(express.json());
 app.use(express.static(clientPath));
 app.use('/api', apiRouter);
 app.get('/', function (req, res) {
-    res.json({ message: 'test' });
+    res.sendFile(clientPath + '/index.html');
 });
 server.listen(PORT, function () {
     console.log(`listening to localhost http://localhost:${PORT}`);

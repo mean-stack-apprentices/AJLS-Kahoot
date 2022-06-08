@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { apiRouter } from './routers/api.routes.js';
 import { app, server } from './serverConfig.js';
+import * as socketServer from './sockets.js';
 
 dotenv.config();
 
@@ -32,7 +33,7 @@ app.use(express.static(clientPath));
 app.use('/api', apiRouter);
 
 app.get('/', function(req, res) {
-   res.sendFile('../');
+   res.sendFile(clientPath + '/index.html');
 });
 
 server.listen(PORT, function() {
